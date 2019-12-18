@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:controls="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:viewmodels="clr-namespace:SantaTalk"
+    mc:Ignorable="d"
+    NavigationPage.HasNavigationBar="False"
+    NavigationPage.BackButtonTitle=""
+    ios:Page.UseSafeArea="True"
+    BackgroundColor="{StaticResource dark_gradient}"
+    x:Class="SantaTalk.MainPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <controls:PancakeView BackgroundGradientStartColor="{StaticResource dark_gradient}" 
+                          BackgroundGradientEndColor="{StaticResource light_gradient}">
+
+        <Grid x:Name="MainGrid">
+            <ScrollView VerticalOptions="FillAndExpand">
+                <StackLayout VerticalOptions="FillAndExpand" Padding="24" Spacing="0">
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <Label Text="WELCOME TO" FontSize="16" TextColor="{StaticResource highlight_text}"/>
+                        <Label Text="Santa Talk" FontSize="48"/>
+                        <Label Margin="0,24,0,16" FontSize="15" Text="Write Santa a letter, and he'll instantly let you know if you've been naughty or nice!" />
+                    </StackLayout>
+                    <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
+                        <StackLayout Spacing="8">
+                            <Label Text="WHAT'S YOUR NAME?" FontSize="12"/>
+                            <Entry Text="{Binding KidsName}" />
+                        </StackLayout>
+                        <StackLayout Spacing="8">
+                            <Label Text="WRITE YOUR LETTER TO SANTA" FontSize="12"/>
+                            <Editor Text="{Binding LetterText}" TextColor="White"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Margin="16" Command="{Binding SendLetterCommand}" />
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+
+    </controls:PancakeView>
+
+</ContentPage>

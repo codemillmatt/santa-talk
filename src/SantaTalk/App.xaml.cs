@@ -10,7 +10,13 @@ namespace SantaTalk
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            var navPage = new NavigationPage(new MainPage())
+            {
+                BarBackgroundColor = Color.FromHex("#301536"),
+                BarTextColor = Color.Wheat
+            };
+
+            MainPage = navPage;
         }
 
         protected override void OnStart()
