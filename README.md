@@ -62,7 +62,7 @@ Then you'll be able to browse the `Text Analytics` service you just created. Mak
 
 You'll also want to get the Azure Functions runtime locally. So you can run everything from your machine without having to deploy it to Azure. (Although if you want to deploy to Azure - by all means do so!)
 
-Follow the [documentation](https://docs.microsoft.com/azure/azure-functions/functions-run-local?WT.mc_id=santatalkchallenge-github-masoucou) to get everything installed for the 2.x version of Functions.
+Follow the [documentation](https://docs.microsoft.com/azure/cognitive-services/welcome?WT.mc_id=santatalkchallenge-github-masoucou) to get everything installed for the 2.x version of Functions.
 
 What I like to do is run my Xamarin app from Visual Studio, then run my Functions app from VS Code.
 
@@ -85,6 +85,8 @@ At the same level as the *csproj file for the Functions project add a file named
 ```
 
 Make sure you replace the `APIKey` and `APIEndpoint` with the values you found from your Text Analytics service in the Azure portal.
+
+And if you're really digging the Serverless Lifestyle - [here are several FREE courses on creating serverless apps with Azure Functions!](https://docs.microsoft.com/learn/paths/create-serverless-applications/?WT.mc_id=santatalkchallenge-github-masoucou)
 
 ## Make Some Changes!
 
