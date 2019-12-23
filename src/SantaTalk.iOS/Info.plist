@@ -45,6 +45,10 @@
 		<string>futura_heavy.ttf</string>
 		<string>futura_medium.ttf</string>
 		<string>futura_extrablack.ttf</string>
-	</array>
+	    <string>MerryChristmasStar.ttf</string>
+    <string>CHRICI.TTF</string>
+    <string>Bitter-Regular.ttf</string>
+    <string>Mansalva-Regular.ttf</string>
+</array>
 </dict>
 </plist>

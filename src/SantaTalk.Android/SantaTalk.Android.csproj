@@ -101,27 +101,27 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\star.png">
+    <AndroidResource Include="Resources\drawable-xxxhdpi\snow.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xxhdpi\star.png">
+    <AndroidResource Include="Resources\drawable-xxhdpi\snow.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xhdpi\star.png">
+    <AndroidResource Include="Resources\drawable-xhdpi\snow.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-mdpi\star.png">
+    <AndroidResource Include="Resources\drawable-hdpi\snow.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-ldpi\star.png">
+    <AndroidResource Include="Resources\drawable-mdpi\snow.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-hdpi\star.png">
+    <AndroidResource Include="Resources\drawable-ldpi\snow.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
@@ -135,6 +135,7 @@
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
+    <Folder Include="Assets\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SantaTalk\SantaTalk.csproj">
@@ -147,6 +148,10 @@
     <AndroidAsset Include="Assets\futura_extrablack.ttf" />
     <AndroidAsset Include="Assets\futura_heavy.ttf" />
     <AndroidAsset Include="Assets\futura_medium.ttf" />
+    <AndroidAsset Include="Assets\MerryChristmasStar.ttf" />
+    <AndroidAsset Include="Assets\CHRICI.TTF" />
+    <AndroidAsset Include="Assets\Bitter-Regular.ttf" />
+    <AndroidAsset Include="Assets\Mansalva-Regular.ttf" />
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

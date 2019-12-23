@@ -10,7 +10,7 @@
     mc:Ignorable="d"
     NavigationPage.HasNavigationBar="False"
     NavigationPage.BackButtonTitle=""
-    ios:Page.UseSafeArea="True"
+    ios:Page.UseSafeArea="false"
     BackgroundColor="{StaticResource dark_gradient}"
     x:Class="SantaTalk.MainPage">
 
@@ -23,24 +23,28 @@
 
         <Grid x:Name="MainGrid">
             <ScrollView VerticalOptions="FillAndExpand">
-                <StackLayout VerticalOptions="FillAndExpand" Padding="24" Spacing="0">
-                    <StackLayout VerticalOptions="CenterAndExpand">
-                        <Label Text="WELCOME TO" FontSize="16" TextColor="{StaticResource highlight_text}"/>
-                        <Label Text="Santa Talk" FontSize="48"/>
-                        <Label Margin="0,24,0,16" FontSize="15" Text="Write Santa a letter, and he'll instantly let you know if you've been naughty or nice!" />
-                    </StackLayout>
-                    <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
-                        <StackLayout Spacing="8">
-                            <Label Text="WHAT'S YOUR NAME?" FontSize="12"/>
-                            <Entry Text="{Binding KidsName}" />
+                <controls:PancakeView BackgroundGradientStartColor="#165aae" BackgroundGradientEndColor="#0e2746">
+                    <Grid>
+                        <Image x:Name="Snow" IsAnimationPlaying="False" Source="snowfall.gif" Aspect="AspectFill" Opacity="0.2" />
+                        <StackLayout VerticalOptions="FillAndExpand" Padding="24, 40" Spacing="0">
+                            <StackLayout VerticalOptions="CenterAndExpand">
+                                <Label HorizontalTextAlignment="Center" FontFamily="{StaticResource ChristmasCardII}" Text="Santa Talk" FontSize="70"/>
+                                <Label HorizontalTextAlignment="Center" Margin="0,16" FontSize="14" LineHeight="1.4" FontFamily="{StaticResource BitterRegular}" Text="Write Santa a letter, and he'll instantly let you know if you've been naughty or nice! Or maybe just give your phone a little shake, because who doesn't want some snow during the holidays?" />
+                            </StackLayout>
+                            <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
+                                <StackLayout Spacing="8">
+                                    <Label Text="WHAT'S YOUR NAME?" FontSize="12"/>
+                                    <Entry Text="{Binding KidsName}" />
+                                </StackLayout>
+                                <StackLayout Spacing="8">
+                                    <Label Text="WRITE YOUR LETTER TO SANTA" FontSize="12"/>
+                                    <Editor Text="{Binding LetterText}" TextColor="White"/>
+                                </StackLayout>
+                            </StackLayout>
+                            <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Margin="16" Command="{Binding SendLetterCommand}" />
                         </StackLayout>
-                        <StackLayout Spacing="8">
-                            <Label Text="WRITE YOUR LETTER TO SANTA" FontSize="12"/>
-                            <Editor Text="{Binding LetterText}" TextColor="White"/>
-                        </StackLayout>
-                    </StackLayout>
-                    <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Margin="16" Command="{Binding SendLetterCommand}" />
-                </StackLayout>
+                    </Grid>
+                </controls:PancakeView>
             </ScrollView>
         </Grid>
 

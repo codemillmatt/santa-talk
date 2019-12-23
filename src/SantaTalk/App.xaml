@@ -2,25 +2,21 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="SantaTalk.App">
     <Application.Resources>
         <ResourceDictionary>
-            <!-- The actual fonts -->
-            <OnPlatform x:Key="font_book" x:TypeArguments="x:String">
-                <On Platform="Android" Value="futura_book.ttf#FuturaBT-Book" />
-                <On Platform="iOS" Value="FuturaBT-Book" />
+            <OnPlatform x:TypeArguments="x:String" x:Key="ChristmasCardII">
+                <On Platform="iOS" Value="ChristmasCardII"/>
+                <On Platform="Android" Value="CHRICI__.TTF# II"/>
             </OnPlatform>
-            <OnPlatform x:Key="font_medium" x:TypeArguments="x:String">
-                <On Platform="Android" Value="futura_medium.ttf#FuturaBT-Medium" />
-                <On Platform="iOS" Value="FuturaBT-Medium" />
+            <OnPlatform x:TypeArguments="x:String" x:Key="MansalvaRegular">
+                <On Platform="iOS" Value="Mansalva-Regular"/>
+                <On Platform="Android" Value="Mansalva-Regular.ttf#Regular"/>
             </OnPlatform>
-            <OnPlatform x:Key="font_heavy" x:TypeArguments="x:String">
-                <On Platform="Android" Value="futura_heavy.ttf#FuturaBT-Heavy" />
-                <On Platform="iOS" Value="FuturaBT-Heavy" />
+            <OnPlatform x:TypeArguments="x:String" x:Key="BitterRegular">
+                <On Platform="iOS" Value="Bitter-Regular"/>
+                <On Platform="Android" Value="Bitter-Regular.ttf#Regular"/>
             </OnPlatform>
-            <OnPlatform x:Key="font_extrablack" x:TypeArguments="x:String">
-                <On Platform="Android" Value="futura_extrablack.ttf#FuturaBT-ExtraBlack" />
-                <On Platform="iOS" Value="FuturaBT-ExtraBlack" />
-            </OnPlatform>
-            
-            <!-- Primary colors -->            
+
+
+            <!-- Primary colors -->
             <Color x:Key="dark_gradient">#0D0340</Color>
             <Color x:Key="light_gradient">#000429</Color>
             <Color x:Key="highlight_text">#FF4561</Color>
@@ -37,13 +33,13 @@
                 <Setter Property="ColumnSpacing" Value="0" />
             </Style>
             <Style TargetType="{x:Type Label}">
-                <Setter Property="FontFamily" Value="{StaticResource font_book}" />
+                <Setter Property="FontFamily" Value="{StaticResource BitterRegular}" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="TextColor" Value="{StaticResource white}" />
             </Style>
             <Style TargetType="{x:Type Entry}">
                 <Setter Property="BackgroundColor" Value="{StaticResource entry_background}" />
-                <Setter Property="FontFamily" Value="{StaticResource font_book}" />
+                <Setter Property="FontFamily" Value="{StaticResource BitterRegular}" />
                 <Setter Property="HeightRequest" Value="40" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="TextColor" Value="{StaticResource white}" />
@@ -56,9 +52,9 @@
             </Style>
             <Style TargetType="{x:Type Button}">
                 <Setter Property="FontSize" Value="16" />
-                <Setter Property="BackgroundColor" Value="{StaticResource white}" />
-                <Setter Property="TextColor" Value="{StaticResource dark_gradient}" />
-                <Setter Property="FontFamily" Value="{StaticResource font_heavy}" />
+                <Setter Property="BackgroundColor" Value="#ff5454" />
+                <Setter Property="TextColor" Value="#ffffff" />
+                <Setter Property="FontFamily" Value="{StaticResource BitterRegular}" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>
