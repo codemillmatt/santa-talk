@@ -67,6 +67,7 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderers\BorderlessEntryRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -155,11 +156,13 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\snowfall.gif" />
-    <BundleResource Include="Resources\Bitter-Regular.ttf" />
-    <BundleResource Include="Resources\Mansalva-Regular.ttf" />
-    <BundleResource Include="Resources\CHRICI.TTF" />
+    <BundleResource Include="Resources\CircularStd-Black.otf" />
+    <BundleResource Include="Resources\CircularStd-Medium.otf" />
+    <BundleResource Include="Resources\CircularStd-Book.otf" />
+    <BundleResource Include="Resources\Flashback.otf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Renderers\" />
   </ItemGroup>
 </Project>

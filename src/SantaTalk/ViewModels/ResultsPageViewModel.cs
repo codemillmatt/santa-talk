@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using MvvmHelpers;
 using SantaTalk.Models;
+using Xamarin.Forms;
 using Xamarin.Forms.StateSquid;
 
 namespace SantaTalk
@@ -48,6 +50,16 @@ namespace SantaTalk
         {
             get => giftDecision;
             set => SetProperty(ref giftDecision, value);
+        }
+
+        public ICommand TryAgainCommand { get; set; }
+
+        public ResultsPageViewModel()
+        {
+            TryAgainCommand = new Command(async () =>
+            {
+                await Application.Current.MainPage.Navigation.PopAsync();
+            });
         }
 
         public async Task SendLetterToSanta()

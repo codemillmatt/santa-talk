@@ -52,7 +52,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991220-pre3" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms">
       <Version>2.4.11.982</Version>
@@ -64,7 +64,7 @@
       <Version>1.1.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.PancakeView">
-      <Version>1.3.6</Version>
+      <Version>1.3.4</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
@@ -125,6 +125,10 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\snowfall.gif">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
@@ -144,14 +148,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\futura_book.ttf" />
-    <AndroidAsset Include="Assets\futura_extrablack.ttf" />
-    <AndroidAsset Include="Assets\futura_heavy.ttf" />
-    <AndroidAsset Include="Assets\futura_medium.ttf" />
-    <AndroidAsset Include="Assets\MerryChristmasStar.ttf" />
-    <AndroidAsset Include="Assets\CHRICI.TTF" />
-    <AndroidAsset Include="Assets\Bitter-Regular.ttf" />
-    <AndroidAsset Include="Assets\Mansalva-Regular.ttf" />
+    <AndroidAsset Include="Assets\CircularStd-Black.otf" />
+    <AndroidAsset Include="Assets\CircularStd-Medium.otf" />
+    <AndroidAsset Include="Assets\CircularStd-Book.otf" />
+    <AndroidAsset Include="Assets\Flashback.otf" />
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
