@@ -6,6 +6,7 @@ namespace SantaTalk
 {
     public partial class App : Application
     {
+        static SantaAnswerDatabase database;
         public App()
         {
             InitializeComponent();
@@ -17,6 +18,18 @@ namespace SantaTalk
             };
 
             MainPage = navPage;
+        }
+
+        public static SantaAnswerDatabase Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new SantaAnswerDatabase();
+                }
+                return database;
+            }
         }
 
         protected override void OnStart()

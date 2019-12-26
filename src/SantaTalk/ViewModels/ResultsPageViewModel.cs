@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using MvvmHelpers;
 using SantaTalk.Models;
+using Xamarin.Forms;
 using Xamarin.Forms.StateSquid;
 
 namespace SantaTalk
@@ -76,7 +78,25 @@ namespace SantaTalk
             GiftDecision = comments.GiftPrediction;
             DetectedLanguage = results.DetectedLanguage;
 
+            var result = new SantaResultModel
+            {
+                KidName = KidsName,
+                GiftPrediction = GiftDecision,
+                DetectedLanguage = DetectedLanguage,
+                SentimentInterpretation = SantasComment
+            };
+
+            await App.Database.SaveItemAsync(result);
+
             CurrentState = State.Success;
         }
+        public ResultsPageViewModel()
+        {
+            ListSantaCommand = new Command(async () =>
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new AllAnswerSanta());
+            });
+        }
+        public ICommand ListSantaCommand { get; }
     }
 }

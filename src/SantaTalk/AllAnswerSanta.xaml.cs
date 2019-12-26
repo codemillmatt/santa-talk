@@ -1,15 +1,21 @@
-﻿using System;
+﻿using FFImageLoading.Forms;
+using SantaTalk.Models;
+using SantaTalk.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using FFImageLoading.Forms;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.StateSquid;
+using Xamarin.Forms.Xaml;
 
 namespace SantaTalk
 {
-    public partial class ResultsPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class AllAnswerSanta : ContentPage
     {
         private readonly int _formsWidth;
         private readonly int _formsHeight;
@@ -17,17 +23,17 @@ namespace SantaTalk
         private bool _initialized = false;
         private bool _starsAdded = false;
         private List<VisualElement> _stars = new List<VisualElement>();
-        private ResultsPageViewModel vm = new ResultsPageViewModel();
-
-        public ResultsPage(string kidsName, string letterText)
+        public AllAnswerSantaViewModel vm { get; set; }
+        public SantaAnswerDatabase database;
+        public AllAnswerSanta()
         {
             InitializeComponent();
-
+            
+            vm = new AllAnswerSantaViewModel();
+            database = new SantaAnswerDatabase();
+            //List<SantaResultDisplay> data = await GetDados();
             BindingContext = vm;
-
-            vm.KidsName = kidsName;
-            vm.LetterText = letterText;
-            vm.CurrentState = State.Loading;
+            vm.SantaResultDisplays = new ObservableCollection<SantaResultModel>(database.GetItemsAsync().Result);
 
             _formsWidth = Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density);
             _formsHeight = Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density);
@@ -36,8 +42,6 @@ namespace SantaTalk
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
-            await vm.SendLetterToSanta();
             
             if (!_initialized)
             {
@@ -46,6 +50,11 @@ namespace SantaTalk
             }
 
             _initialized = true;
+        }
+
+        public async Task<List<SantaResultModel>> GetDados()
+        {
+            return await database.GetItemsAsync();
         }
 
         private void PositionStars()
