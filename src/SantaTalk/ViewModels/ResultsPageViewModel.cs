@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using MvvmHelpers;
 using SantaTalk.Models;
+using Xamarin.Forms;
 using Xamarin.Forms.StateSquid;
 
 namespace SantaTalk
@@ -50,6 +51,13 @@ namespace SantaTalk
             set => SetProperty(ref giftDecision, value);
         }
 
+        Color backgroundColor;
+        public Color BackgroundColor
+        {
+            get => backgroundColor;
+            set => SetProperty(ref backgroundColor, value);
+        }
+
         public async Task SendLetterToSanta()
         {
             CurrentState = State.Loading;
@@ -76,7 +84,30 @@ namespace SantaTalk
             GiftDecision = comments.GiftPrediction;
             DetectedLanguage = results.DetectedLanguage;
 
+            BackgroundColor = CalcColor(results.SentimentScore);
+
             CurrentState = State.Success;
+        }
+
+        //  Score | R   | G   | B
+        // -------|-----|-----|-----
+        //    0   | 1   | 0.5 | 0.5
+        //    0.5 | 1   | 1   | 1
+        //    1   | 0.5 | 1   | 0.5
+        public Color CalcColor(double score)
+        {
+            if (score < 0.5)
+            {
+                var x = (0.5 - score) * 2.0;
+                var y = x * 0.5 + (1.0 - x) * 1.0;
+                return new Color(1.0, y, y);
+            }
+            else
+            {
+                var x = (score - 0.5) * 2.0;
+                var y = x * 0.5 + (1.0 - x) * 1.0;
+                return new Color(y, 1.0, y);
+            }
         }
     }
 }
