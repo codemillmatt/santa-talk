@@ -9,10 +9,9 @@ namespace SantaTalk
     {
         public MainPageViewModel()
         {
-            SendLetterCommand = new Command(async () =>
-            {
-                await Application.Current.MainPage.Navigation.PushAsync(new ResultsPage(KidsName, LetterText));
-            });
+            SendLetterCommand = new Command(
+                async () => await Application.Current.MainPage.Navigation.PushAsync(new ResultsPage(KidsName, LetterText)),
+                () => false);
         }
 
         string kidsName;
@@ -22,7 +21,7 @@ namespace SantaTalk
             set => SetProperty(ref kidsName, value);
         }
 
-        string letterText = "Dear Santa...";
+        string letterText = Defaults.LetterText;
         public string LetterText
         {
             get => letterText;
