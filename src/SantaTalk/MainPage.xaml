@@ -29,14 +29,83 @@
                             <Label Text="Santa Talk" FontSize="48"/>
                             <Label Margin="0,24,0,16" FontSize="15" Text="Write Santa a letter, and he'll instantly let you know if you've been naughty or nice!" />
                         </StackLayout>
+
+                        <Grid>
+                            <Image
+                                Source="santa_claus"
+                                HeightRequest="200"
+                            />
+
+                            <Grid>
+                                <BoxView
+                                    x:Name="LeftEye"
+                                    WidthRequest="12"
+                                    HeightRequest="12"
+                                    CornerRadius="6"
+                                    BackgroundColor="#794220"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                />
+
+                                <BoxView
+                                    x:Name="LeftEyeSmiling"
+                                    IsVisible="false"
+                                    WidthRequest="12"
+                                    HeightRequest="12"
+                                    CornerRadius="6"
+                                    BackgroundColor="#fdc9a3"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    TranslationY="5"
+                                    BindingContext="{x:Reference Name=LeftEye}"
+                                    TranslationX="{Binding Path=TranslationX}"
+                                />
+                            </Grid>
+
+                            <Grid>
+                                <BoxView
+                                    x:Name="RightEye"
+                                    WidthRequest="12"
+                                    HeightRequest="12"
+                                    CornerRadius="6"
+                                    BackgroundColor="#794220"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                />
+
+                                <BoxView
+                                    x:Name="RightEyeSmiling"
+                                    IsVisible="false"
+                                    WidthRequest="12"
+                                    HeightRequest="12"
+                                    CornerRadius="6"
+                                    BackgroundColor="#fdc9a3"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    TranslationY="5"
+                                    BindingContext="{x:Reference Name=RightEye}"
+                                    TranslationX="{Binding Path=TranslationX}"
+                                />
+                            </Grid>
+                        </Grid>
                         <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
                             <StackLayout Spacing="8">
                                 <Label Text="WHAT'S YOUR NAME?" FontSize="12"/>
-                                <Entry Text="{Binding KidsName}" />
+                                <Entry
+                                    Text="{Binding KidsName}"
+                                    Focused="OnEntryFocused"
+                                    Unfocused="OnEntryUnfocused"
+                                    TextChanged="OnTextChanged"
+                                />
                             </StackLayout>
                             <StackLayout Spacing="8">
                                 <Label Text="WRITE YOUR LETTER TO SANTA" FontSize="12"/>
-                                <Editor Text="{Binding LetterText}" TextColor="White"/>
+                                <Editor
+                                    Text="{Binding LetterText}"
+                                    TextColor="White"
+                                    Focused="OnEditorFocused"
+                                    Unfocused="OnEditorUnfocused"
+                                />
                             </StackLayout>
                         </StackLayout>
                         <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Margin="16" Command="{Binding SendLetterCommand}" />

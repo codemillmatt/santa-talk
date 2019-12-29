@@ -31,9 +31,20 @@ namespace SantaTalk
             _formsHeight = Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density);
         }
 
+        private const int _leftEyeDefaultPosition = -29;
+        private const int _rightEyeDefaultPosition = 29;
+
+        private void PositionEyes()
+        {
+            LeftEye.TranslationX = _leftEyeDefaultPosition;
+            RightEye.TranslationX = _rightEyeDefaultPosition;
+        }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+
+            PositionEyes();
 
             if (!_initialized)
             {
@@ -90,6 +101,68 @@ namespace SantaTalk
                 await element.RotateTo(360, duration, Easing.Linear);
                 await element.RotateTo(0, 0); // reset to initial position
             }
+        }
+
+        private void OnEntryFocused(object sender, FocusEventArgs args)
+        {
+            if (sender is Entry entry)
+            {
+                MoveEyes(entry.CursorPosition);
+            }
+        }
+
+        private void OnEntryUnfocused(object sender, FocusEventArgs args)
+        {
+            LeftEye.TranslationX = _leftEyeDefaultPosition;
+            LeftEye.TranslationY = 0;
+            RightEye.TranslationX = _rightEyeDefaultPosition;
+            RightEye.TranslationY = 0;
+        }
+
+        private void OnTextChanged(object sender, TextChangedEventArgs args)
+        {
+            if (sender is Entry entry)
+            {
+                MoveEyes(entry.CursorPosition);
+            }
+        }
+
+        private const int _minEntryCursorPosition = 0;
+        private const int _maxEntryCursorPosition = 40;
+        private const int _minShift = -8;
+        private const int _maxShift = 8;
+
+        private void MoveEyes(int cursorPosition)
+        {
+            LeftEye.TranslationX = _leftEyeDefaultPosition + CalculateShift(cursorPosition);
+            LeftEye.TranslationY = 3;
+            RightEye.TranslationX = _rightEyeDefaultPosition + CalculateShift(cursorPosition);
+            RightEye.TranslationY = 3;
+        }
+
+        private int CalculateShift(int cursorPosition)
+        {
+            return Map(cursorPosition, _minEntryCursorPosition, _maxEntryCursorPosition, _minShift, _maxShift);
+        }
+
+        private int Map(int value, int fromMin, int fromMax, int toMin, int toMax)
+        {
+            if (value > _maxEntryCursorPosition)
+                value = _maxEntryCursorPosition;
+
+            return (value - fromMin) * (toMax - toMin) / (fromMax - fromMin) + toMin;
+        }
+
+        private void OnEditorFocused(object sender, FocusEventArgs args)
+        {
+            LeftEyeSmiling.IsVisible = true;
+            RightEyeSmiling.IsVisible = true;
+        }
+
+        private void OnEditorUnfocused(object sender, FocusEventArgs args)
+        {
+            LeftEyeSmiling.IsVisible = false;
+            RightEyeSmiling.IsVisible = false;
         }
     }
 }
