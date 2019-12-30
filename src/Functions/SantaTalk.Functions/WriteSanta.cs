@@ -1,18 +1,3 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
-using System.Collections.Specialized;
-using System.Linq;
-using Microsoft.Rest.TransientFaultHandling;
-using SantaTalk.Models;
-
 namespace SantaTalk.Functions
 {
     public static class WriteSanta
@@ -21,15 +6,13 @@ namespace SantaTalk.Functions
 
         static WriteSanta()
         {
-            var keys = new ApiKeyServiceClientCredentials(Environment.GetEnvironmentVariable("APIKey"));
+            var keys = new ApiKeyServiceClientCredentials(Environment.GetEnvironmentVariable("2fb*****************a6ef3a6"));
 
-            textClient = new TextAnalyticsClient(keys) { Endpoint = Environment.GetEnvironmentVariable("APIEndpoint") };
+            textClient = new TextAnalyticsClient(keys) { Endpoint = Environment.GetEnvironmentVariable("https://eastasia.api.cognitive.microsoft.com/") };
         }
 
         [FunctionName("WriteSanta")]
-        public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] SantaLetter theLetter,
-            ILogger log)
+        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] SantaLetter theLetter,ILogger log)
         {
             SantaResults result;
 
@@ -73,5 +56,7 @@ namespace SantaTalk.Functions
 
             return new OkObjectResult(result);
         }
+
+
     }
 }

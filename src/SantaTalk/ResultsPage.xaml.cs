@@ -59,10 +59,10 @@ namespace SantaTalk
                 {
                     var starField = new Grid();
 
-                    for (int i = 0; i < 20; i++)
+                    for (int i = 0; i < 10; i++)
                     {
-                        var size = random.Next(3, 7);
-                        var star = new CachedImage() { Source = "star.png", Opacity = 0.3, HeightRequest = size, WidthRequest = size, HorizontalOptions = LayoutOptions.Start, VerticalOptions = LayoutOptions.Start, TranslationX = random.Next(0, _formsWidth), TranslationY = random.Next(0, _formsHeight) };
+                        var size = random.Next(12, 22);
+                        var star = new CachedImage() { Source = "SantaElves.jpg", Opacity = 0.3, HeightRequest = size, WidthRequest = size, HorizontalOptions = LayoutOptions.Start, VerticalOptions = LayoutOptions.Start, TranslationX = random.Next(0, _formsWidth), TranslationY = random.Next(0, _formsHeight) };
                         starField.Children.Add(star);
                     }
 

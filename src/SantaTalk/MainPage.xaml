@@ -17,7 +17,7 @@
     <ContentPage.BindingContext>
         <viewmodels:MainPageViewModel />
     </ContentPage.BindingContext>
-
+ 
     <controls:PancakeView BackgroundGradientStartColor="{StaticResource dark_gradient}" 
                           BackgroundGradientEndColor="{StaticResource light_gradient}">
 
@@ -32,11 +32,11 @@
                     <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
                         <StackLayout Spacing="8">
                             <Label Text="WHAT'S YOUR NAME?" FontSize="12"/>
-                            <Entry Text="{Binding KidsName}" />
+                            <Entry Text="{Binding KidsName}" TextColor="{StaticResource normal_text}"  />
                         </StackLayout>
                         <StackLayout Spacing="8">
                             <Label Text="WRITE YOUR LETTER TO SANTA" FontSize="12"/>
-                            <Editor Text="{Binding LetterText}" TextColor="White"/>
+                            <Editor Text="{Binding LetterText}" TextColor="{StaticResource normal_text}"/>
                         </StackLayout>
                     </StackLayout>
                     <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Margin="16" Command="{Binding SendLetterCommand}" />
@@ -45,5 +45,6 @@
         </Grid>
 
     </controls:PancakeView>
+        
 
 </ContentPage>

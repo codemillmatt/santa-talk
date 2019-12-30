@@ -20,13 +20,13 @@
                 <On Platform="iOS" Value="FuturaBT-ExtraBlack" />
             </OnPlatform>
             
-            <!-- Primary colors -->            
-            <Color x:Key="dark_gradient">#0D0340</Color>
-            <Color x:Key="light_gradient">#000429</Color>
-            <Color x:Key="highlight_text">#FF4561</Color>
-            <Color x:Key="entry_background">#190336</Color>
-            <Color x:Key="normal_text">#ffffff</Color>
-            <Color x:Key="white">#ffffff</Color>
+            <!-- Primary colors --> 
+            <Color x:Key="dark_gradient">#5558da</Color>
+            <Color x:Key="light_gradient">#5fd1f9</Color>
+            <Color x:Key="highlight_text">#FFA500</Color>
+            <Color x:Key="entry_background">#ffffff</Color>
+            <Color x:Key="normal_text">#000000</Color>
+            <Color x:Key="white">#FFFFFF</Color>
 
             <!-- Controls -->
             <Style TargetType="{x:Type StackLayout}">
@@ -46,12 +46,12 @@
                 <Setter Property="FontFamily" Value="{StaticResource font_book}" />
                 <Setter Property="HeightRequest" Value="40" />
                 <Setter Property="FontSize" Value="16" />
-                <Setter Property="TextColor" Value="{StaticResource white}" />
+                <Setter Property="TextColor" Value="{StaticResource normal_text}" />
             </Style>
             <Style TargetType="Editor">
                 <Setter Property="BackgroundColor" Value="{StaticResource entry_background}"/>
                 <Setter Property="HeightRequest" Value="200" />
-                <Setter Property="TextColor" Value="{StaticResource white}" />
+                <Setter Property="TextColor" Value="{StaticResource normal_text}" />
                 <Setter Property="FontSize" Value="16" />
             </Style>
             <Style TargetType="{x:Type Button}">
