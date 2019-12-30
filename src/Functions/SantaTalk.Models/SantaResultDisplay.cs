@@ -8,5 +8,7 @@ namespace SantaTalk.Models
     {        
         public string SentimentInterpretation { get; set; }
         public string GiftPrediction { get; set; }
+        public string AgeComment { get; set; }
+        public string SmileComment { get; set; }
     }
 }

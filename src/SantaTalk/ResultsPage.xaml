@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:controls="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"             
+    xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"    
+    xmlns:local="clr-namespace:SantaTalk.Converters"
     x:Class="SantaTalk.ResultsPage"
     ios:Page.UseSafeArea="True"
     BackgroundColor="{StaticResource dark_gradient}"
@@ -12,6 +13,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <local:HexToColorConverter x:Key="HexToColorConverter" />
             <Style TargetType="Label" x:Key="SantaText">
                 <Setter Property="FontSize" Value="16"/>
                 <Setter Property="TextColor" Value="Black"/>
@@ -56,7 +58,14 @@
                     <state:StateView StateKey="Success">
                         <StackLayout Margin="24" Spacing="0">
                             <Label Text="HERE IS SANTA'S LETTER BACK TO YOU" FontSize="16" TextColor="{StaticResource highlight_text}"/>
-                            <Label Text="{Binding KidsName, StringFormat='Dear {0},'}" FontSize="48"/>
+                            <Label FontSize="48">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Dear "/>
+                                        <Span Text="{Binding KidsName}" TextColor="{Binding KidsNameColor, Converter={StaticResource HexToColorConverter}}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
 
                             <controls:PancakeView Margin="0,24,0,0" BackgroundColor="{StaticResource white}" CornerRadius="8">
                                 <StackLayout Padding="24" Spacing="8">
@@ -72,6 +81,8 @@
                                     </Label>
                                     <Label Text="{Binding SantasComment}" Style="{StaticResource SantaText}" />
                                     <Label Text="{Binding GiftDecision}" Style="{StaticResource SantaText}" />
+                                    <Label Text="{Binding AgeComment}" Style="{StaticResource SantaText}" />
+                                    <Label Text="{Binding SmileComment}" Style="{StaticResource SantaText}" />
                                     <Label Text="Love," Margin="0,15,0,0" FontSize="12" Style="{StaticResource SantaText}" />
                                     <Label Text="Santa Claus" Style="{StaticResource SantaText}" />
                                 </StackLayout>
