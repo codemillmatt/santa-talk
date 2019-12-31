@@ -11,7 +11,7 @@
     NavigationPage.HasNavigationBar="False"
     NavigationPage.BackButtonTitle=""
     ios:Page.UseSafeArea="True"
-    BackgroundColor="{StaticResource dark_gradient}"
+    BackgroundColor="{StaticResource dark_gradient}" Title="Main Page"
     x:Class="SantaTalk.MainPage">
 
     <ContentPage.BindingContext>

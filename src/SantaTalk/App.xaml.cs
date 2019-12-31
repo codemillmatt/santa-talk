@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SantaTalk.Services;
+using SantaTalk.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,15 +12,27 @@ namespace SantaTalk
         {
             InitializeComponent();
 
-            var navPage = new NavigationPage(new MainPage())
-            {
-                BarBackgroundColor = Color.FromHex("#301536"),
-                BarTextColor = Color.Wheat
-            };
+            //var navPage = new NavigationPage(new AppShell())
+            //{
+            //    BarBackgroundColor = Color.FromHex("#301536"),
+            //    BarTextColor = Color.Wheat
+            //};
 
-            MainPage = navPage;
+            //MainPage = navPage;
+            MainPage = new AppShell() ;
         }
-
+        private static CognitiveServiceDB database;
+        public static CognitiveServiceDB Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new CognitiveServiceDB();
+                }
+                return database;
+            }
+        }
         protected override void OnStart()
         {
         }

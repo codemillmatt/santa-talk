@@ -156,4 +156,13 @@
     <BundleResource Include="Resources\star%402x.png" />
     <BundleResource Include="Resources\star%403x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\twitter_icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\googlemaps.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\viewcarousel.png" />
+  </ItemGroup>
 </Project>

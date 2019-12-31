@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using MvvmHelpers;
 using SantaTalk.Models;
+using SantaTalk.Services;
+using Xamarin.Forms;
 using Xamarin.Forms.StateSquid;
 
 namespace SantaTalk
 {
     public class ResultsPageViewModel : BaseViewModel
     {
+        public ICommand Send_tweet { get; set; }
         string kidsName;
         public string KidsName
         {
@@ -77,6 +81,29 @@ namespace SantaTalk
             DetectedLanguage = results.DetectedLanguage;
 
             CurrentState = State.Success;
+        }
+        public ResultsPageViewModel()
+        {
+
+            Send_tweet = new Command(SendTweet_Twitter);
+        }
+
+        private async void SendTweet_Twitter(object obj)
+        {
+            var objModel = new TwitterService();
+            if (SantasComment!=string.Empty)
+            {
+               var tweetReply= await objModel.SendTweet(new MessageModel { Message = SantasComment });
+                if (!string.IsNullOrEmpty(tweetReply))
+                {
+                    await App.Current.MainPage.DisplayAlert("Successfull", "Tweet Sent Successfully, Tweet Id " + tweetReply, "Ok");
+                }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert("Failed", "Tweet Not Sent", "Ok");
+
+                }
+            }
         }
     }
 }
