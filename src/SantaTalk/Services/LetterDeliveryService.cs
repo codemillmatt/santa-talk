@@ -11,7 +11,7 @@ namespace SantaTalk
     {
         //string santaUrl = "{REPLACE WITH YOUR FUNCTION URL}/api/WriteSanta";
 
-       // string santaUrl = "http://localhost:7071/api/WriteSanta";
+        string santaUrl = "http://localhost:7071/api/WriteSanta";
         static HttpClient httpClient = new HttpClient();
 
         public async Task<SantaResults> WriteLetterToSanta(SantaLetter letter)
