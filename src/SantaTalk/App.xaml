@@ -6,18 +6,22 @@
             <OnPlatform x:Key="font_book" x:TypeArguments="x:String">
                 <On Platform="Android" Value="futura_book.ttf#FuturaBT-Book" />
                 <On Platform="iOS" Value="FuturaBT-Book" />
+                <On Platform="UWP" Value="Assets/Fonts/futura_book.ttf.ttf#FuturaBT-Book" />
             </OnPlatform>
             <OnPlatform x:Key="font_medium" x:TypeArguments="x:String">
                 <On Platform="Android" Value="futura_medium.ttf#FuturaBT-Medium" />
                 <On Platform="iOS" Value="FuturaBT-Medium" />
+                <On Platform="UWP" Value="Assets/Fonts/futura_medium.ttf.ttf#FuturaBT-Medium" />
             </OnPlatform>
             <OnPlatform x:Key="font_heavy" x:TypeArguments="x:String">
                 <On Platform="Android" Value="futura_heavy.ttf#FuturaBT-Heavy" />
                 <On Platform="iOS" Value="FuturaBT-Heavy" />
+                <On Platform="UWP" Value="Assets/Fonts/futura_heavy.ttf.ttf#FuturaBT-Heavy" />
             </OnPlatform>
             <OnPlatform x:Key="font_extrablack" x:TypeArguments="x:String">
                 <On Platform="Android" Value="futura_extrablack.ttf#FuturaBT-ExtraBlack" />
                 <On Platform="iOS" Value="FuturaBT-ExtraBlack" />
+                <On Platform="UWP" Value="Assets/Fonts/futura_extrablack.ttf.ttf#FuturaBT-ExtraBlack" />
             </OnPlatform>
             
             <!-- Primary colors -->            
