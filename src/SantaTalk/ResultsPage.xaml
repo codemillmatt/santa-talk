@@ -60,6 +60,10 @@
 
                             <controls:PancakeView Margin="0,24,0,0" BackgroundColor="{StaticResource white}" CornerRadius="8">
                                 <StackLayout Padding="24" Spacing="8">
+                                    <StackLayout IsVisible="{Binding TheresFoto}">
+                                        <Label Text="Here is Santa! And I really like your photo .. and it shows me that you are: " Style="{StaticResource SantaText}"/>
+                                        <Label Text="{Binding EmotionPhoto}" FontSize="Large" FontAttributes="Bold"  Style="{StaticResource SantaText}"/>
+                                    </StackLayout>
                                     <Label Text="I think it's very nice that you took the time to write me." Style="{StaticResource SantaText}" />
                                     <Label Style="{StaticResource SantaText}">
                                         <Label.FormattedText>
