@@ -138,6 +138,7 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="snowfall.gif" />
     <Content Include="star.png" />
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +158,9 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.9</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms">
       <Version>4.4.0.991265</Version>
     </PackageReference>
@@ -166,6 +170,18 @@
       <Project>{091675bf-545d-4b21-a77b-f24abdeaf6aa}</Project>
       <Name>SantaTalk</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\CircularStd-Black.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\CircularStd-Book.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\CircularStd-Medium.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Flashback.otf" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

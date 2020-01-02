@@ -1,131 +1,152 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="SantaTalk.ResultsPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"
-    ios:Page.UseSafeArea="True"
-    BackgroundColor="{StaticResource dark_gradient}"
-    NavigationPage.HasNavigationBar="False">
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="SantaText" TargetType="Label">
-                <Setter Property="FontSize" Value="16" />
-                <Setter Property="TextColor" Value="Black" />
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+    mc:Ignorable="d">
 
     <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <controls:PancakeView BackgroundGradientEndColor="#0e2746" BackgroundGradientStartColor="#080C28">
+                <Grid RowSpacing="16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image
+                        x:Name="Snow"
+                        Grid.RowSpan="2"
+                        Aspect="AspectFill"
+                        IsAnimationPlaying="True"
+                        Opacity="0.2"
+                        Source="snowfall.gif" />
 
-        <controls:PancakeView BackgroundGradientEndColor="{StaticResource light_gradient}" BackgroundGradientStartColor="{StaticResource dark_gradient}">
+                    <ScrollView Grid.Row="0">
+                        <Grid Padding="36,40" state:StateLayout.CurrentState="{Binding CurrentState}">
 
-            <Grid x:Name="MainGrid" state:StateLayout.CurrentState="{Binding CurrentState}">
-
-                <state:StateLayout.StateViews>
-                    <state:StateView StateKey="Loading">
-                        <StackLayout Margin="24" Spacing="0">
-                            <Label
-                                FontSize="16"
-                                Text="HERE IS SANTA'S LETTER BACK TO YOU"
-                                TextColor="{StaticResource highlight_text}" />
-                            <Label FontSize="48" Text="{Binding KidsName, StringFormat='Dear {0},'}" />
-                            <controls:PancakeView
-                                Margin="0,24,0,0"
-                                BackgroundColor="{StaticResource white}"
-                                CornerRadius="8">
-                                <StackLayout Padding="24" Spacing="8">
-                                    <state:SkeletonView
-                                        BackgroundColor="#cccccc"
-                                        CornerRadius="6"
-                                        HeightRequest="20"
-                                        WidthRequest="120" />
-                                    <state:SkeletonView
-                                        BackgroundColor="#cccccc"
-                                        CornerRadius="6"
-                                        HeightRequest="20"
-                                        WidthRequest="120" />
-                                    <state:SkeletonView
-                                        BackgroundColor="#cccccc"
-                                        CornerRadius="6"
-                                        HeightRequest="20"
-                                        WidthRequest="20" />
-                                </StackLayout>
-                            </controls:PancakeView>
-                        </StackLayout>
-                    </state:StateView>
-                    <state:StateView StateKey="Error">
-                        <StackLayout Margin="24" Spacing="0">
-                            <Label
-                                FontSize="16"
-                                Text="HERE IS SANTA'S LETTER BACK TO YOU"
-                                TextColor="{StaticResource highlight_text}" />
-                            <Label FontSize="48" Text="{Binding KidsName, StringFormat='Dear {0},'}" />
-                            <controls:PancakeView
-                                Margin="0,24,0,0"
-                                BackgroundColor="{StaticResource white}"
-                                CornerRadius="8">
-                                <StackLayout Padding="24" Spacing="8">
-                                    <Label Style="{StaticResource SantaText}" Text="I think it's very nice that you took the time to write me." />
-                                    <Label Style="{StaticResource SantaText}" Text="But try as I might, I cannot tell if you've been good or bad." />
-                                    <Label Style="{StaticResource SantaText}" Text="There was really an error though - Santa thinks something's up with your Function." />
-                                </StackLayout>
-                            </controls:PancakeView>
-                        </StackLayout>
-                    </state:StateView>
-                    <state:StateView StateKey="Success">
-                        <StackLayout Margin="24" Spacing="0">
-                            <Label
-                                FontSize="16"
-                                Text="HERE IS SANTA'S LETTER BACK TO YOU"
-                                TextColor="{StaticResource highlight_text}" />
-                            <Label FontSize="48" Text="{Binding KidsName, StringFormat='Dear {0},'}" />
-
-                            <controls:PancakeView
-                                Margin="0,24,0,0"
-                                BackgroundColor="{StaticResource white}"
-                                CornerRadius="8">
-                                <StackLayout Padding="24" Spacing="8">
-                                    <Label Style="{StaticResource SantaText}" Text="I think it's very nice that you took the time to write me." />
-                                    <Label Style="{StaticResource SantaText}">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="I even think you writing in " />
-                                                <Span FontAttributes="Bold" Text="{Binding DetectedLanguage}" />
-                                                <Span Text=" was a nice touch." />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label Style="{StaticResource SantaText}" Text="{Binding SantasComment}" />
-                                    <Label Style="{StaticResource SantaText}" Text="{Binding GiftDecision}" />
-                                    <Label
-                                        Margin="0,15,0,0"
-                                        FontSize="12"
-                                        Style="{StaticResource SantaText}"
-                                        Text="Love," />
-                                    <Label Style="{StaticResource SantaText}" Text="Santa Claus" />
-                                </StackLayout>
-                            </controls:PancakeView>
-                        </StackLayout>
-                    </state:StateView>
-                    <state:StateView StateKey="Empty">
-                        <StackLayout Margin="24">
-                            <Label Text="oh no!" TextColor="White" />
-                        </StackLayout>
-                    </state:StateView>
-                    <state:StateView StateKey="None">
-                        <StackLayout Margin="24">
-                            <Label Text="None" TextColor="White" />
-                        </StackLayout>
-                    </state:StateView>
-                </state:StateLayout.StateViews>
-
-            </Grid>
-
-        </controls:PancakeView>
-
+                            <state:StateLayout.StateViews>
+                                <state:StateView StateKey="Loading">
+                                    <StackLayout Spacing="0">
+                                        <Label
+                                            FontFamily="{StaticResource CircularStdMedium}"
+                                            FontSize="14"
+                                            Text="AQUI ESTA LA CARTA DEL NIÑO Jesús DEVUELTA PARA TI"
+                                            TextColor="{StaticResource highlight_color}" />
+                                        <Label
+                                            d:Text="Querido,"
+                                            FontFamily="{StaticResource CircularStdBlack}"
+                                            FontSize="56"
+                                            Text="{Binding KidsName, StringFormat='Querido {0},'}"
+                                            TextColor="{StaticResource main_text_color}" />
+                                        <controls:PancakeView
+                                            Margin="0,40,0,0"
+                                            Padding="20,40"
+                                            BackgroundColor="#FFF"
+                                            CornerRadius="8">
+                                            <StackLayout Spacing="16">
+                                                <state:SkeletonView
+                                                    BackgroundColor="#cccccc"
+                                                    CornerRadius="6"
+                                                    HeightRequest="20"
+                                                    WidthRequest="120" />
+                                                <state:SkeletonView
+                                                    BackgroundColor="#cccccc"
+                                                    CornerRadius="6"
+                                                    HeightRequest="20"
+                                                    WidthRequest="120" />
+                                                <state:SkeletonView
+                                                    BackgroundColor="#cccccc"
+                                                    CornerRadius="6"
+                                                    HeightRequest="20"
+                                                    WidthRequest="20" />
+                                            </StackLayout>
+                                        </controls:PancakeView>
+                                    </StackLayout>
+                                </state:StateView>
+                                <state:StateView StateKey="Error">
+                                    <StackLayout Spacing="0">
+                                        <Label
+                                            FontFamily="{StaticResource CircularStdMedium}"
+                                            FontSize="14"
+                                            Text="AQUI ESTA LA CARTA DEL NIÑO JESUS DEVUELTA PARA TI"
+                                            TextColor="{StaticResource highlight_color}" />
+                                        <Label
+                                            FontFamily="{StaticResource CircularStdBlack}"
+                                            FontSize="56"
+                                            Text="{Binding KidsName, StringFormat='Querido {0},'}"
+                                            TextColor="{StaticResource main_text_color}" />
+                                        <controls:PancakeView
+                                            Margin="0,40,0,0"
+                                            Padding="20,40"
+                                            BackgroundColor="#FFF"
+                                            CornerRadius="8">
+                                            <StackLayout Spacing="24">
+                                                <Label Text="Creo que es muy agradable que te hayas tomado el tiempo de escribirme." TextColor="{StaticResource dark_text_color}" />
+                                                <Label Text="Pero por más que lo intente, no puedo decir si has sido bueno o malo." TextColor="{StaticResource dark_text_color}" />
+                                                <Label Text="Sin embargo, realmente hubo un error: El Niño Jesús cree que algo pasa con su aplicación" TextColor="{StaticResource dark_text_color}" />
+                                            </StackLayout>
+                                        </controls:PancakeView>
+                                    </StackLayout>
+                                </state:StateView>
+                                <state:StateView StateKey="Success">
+                                    <StackLayout Spacing="0">
+                                        <Label
+                                            FontFamily="{StaticResource CircularStdMedium}"
+                                            FontSize="14"
+                                            Text="AQUI ESTA LA CARTA DEL NIÑO JESUS DEVUELTA PARA TI"
+                                            TextColor="{StaticResource highlight_color}" />
+                                        <Label
+                                            FontFamily="{StaticResource CircularStdBlack}"
+                                            FontSize="56"
+                                            Text="{Binding KidsName, StringFormat='Querido {0},'}"
+                                            TextColor="{StaticResource main_text_color}" />
+                                        <controls:PancakeView
+                                            Margin="0,40,0,0"
+                                            Padding="20,40"
+                                            BackgroundColor="#FFF"
+                                            CornerRadius="8">
+                                            <StackLayout Spacing="24">
+                                                <Label Text="Creo que es muy agradable que te hayas tomado el tiempo de escribirme." TextColor="{StaticResource dark_text_color}" />
+                                                <Label TextColor="{StaticResource dark_text_color}">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Incluso creo que estás escribiendo " />
+                                                            <Span FontAttributes="Bold" Text="{Binding DetectedLanguage}" />
+                                                            <Span Text=" fue un buen toque." />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Label Text="{Binding SantasComment}" TextColor="{StaticResource dark_text_color}" />
+                                                <Label Text="{Binding GiftDecision}" TextColor="{StaticResource dark_text_color}" />
+                                                <Label Text="{Binding AgeComment}" TextColor="{StaticResource dark_text_color}" />
+                                                <Label Text="{Binding SmileComment}" TextColor="{StaticResource dark_text_color}" />
+                                                <Label
+                                                    Margin="0,15,0,0"
+                                                    Text="Con Cariño,"
+                                                    TextColor="{StaticResource dark_text_color}" />
+                                                <Label
+                                                    FontFamily="{StaticResource Flashback}"
+                                                    FontSize="40"
+                                                    Text="El Niño Jesús"
+                                                    TextColor="{StaticResource dark_text_color}" />
+                                            </StackLayout>
+                                        </controls:PancakeView>
+                                    </StackLayout>
+                                </state:StateView>
+                            </state:StateLayout.StateViews>
+                        </Grid>
+                    </ScrollView>
+                    <Button
+                        Margin="36,0"
+                        Command="{Binding TryAgainCommand}"
+                        Text="ENVIAR OTRA CARTA"
+                        VerticalOptions="EndAndExpand" />
+                </Grid>
+            </controls:PancakeView>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

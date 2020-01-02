@@ -25,17 +25,12 @@ namespace SantaTalk
         {
             SendLetterCommand = new Command(async () =>
             {
-                await Application.Current.MainPage.Navigation.PushAsync(new ResultsPage(KidsName, LetterText));
-            });
-
-            SendPictureCommand = new Command(async () =>
-            {
                 if (PictureToSanta==null)
                 {
                     await UserDialogs.Instance.AlertAsync("Oh oh.. You have not attached the image for Santa ..");
                     return;
                 }
-                await Application.Current.MainPage.Navigation.PushAsync(new ResultsPageFace(KidsName, LetterText, PictureToSanta));
+                await Application.Current.MainPage.Navigation.PushAsync(new ResultsPage(KidsName, LetterText, PictureToSanta));
             });
 
             TakePictureCommand = new Command(async () => await SendImage(), () => !IsBusy);
@@ -48,7 +43,7 @@ namespace SantaTalk
             set => SetProperty(ref kidsName, value);
         }
 
-        string letterText = "Dear Santa...";
+        string letterText = "Querido Santa...";
         public string LetterText
         {
             get => letterText;

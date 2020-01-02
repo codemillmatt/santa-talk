@@ -5,11 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="clr-namespace:SantaTalk"
-    ios:Page.UseSafeArea="True"
-    BackgroundColor="{StaticResource dark_gradient}"
+    ios:Page.UseSafeArea="true"
+    BackgroundColor="#080C28"
     NavigationPage.BackButtonTitle=""
     NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
@@ -18,70 +20,84 @@
         <viewmodels:MainPageViewModel />
     </ContentPage.BindingContext>
 
-    <controls:PancakeView BackgroundGradientEndColor="{StaticResource light_gradient}" BackgroundGradientStartColor="{StaticResource dark_gradient}">
-
-        <Grid x:Name="MainGrid">
-            <ScrollView VerticalOptions="FillAndExpand">
-                <StackLayout
-                    Padding="24"
-                    Spacing="0"
-                    VerticalOptions="FillAndExpand">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <controls:PancakeView BackgroundGradientEndColor="#0e2746" BackgroundGradientStartColor="#080C28">
+            <Grid>
+                <Image
+                    x:Name="Snow"
+                    Aspect="AspectFill"
+                    IsAnimationPlaying="True"
+                    Opacity="0.2"
+                    Source="snowfall.gif" />
+                <StackLayout Padding="36,40" Spacing="0">
                     <StackLayout VerticalOptions="CenterAndExpand">
                         <Label
-                            FontSize="16"
-                            Text="WELCOME TO"
-                            TextColor="{StaticResource highlight_text}" />
-                        <Label FontSize="48" Text="Santa Talk" />
+                            FontFamily="{StaticResource CircularStdMedium}"
+                            FontSize="14"
+                            Text="BIENVENIDO"
+                            TextColor="{StaticResource highlight_color}" />
                         <Label
-                            Margin="0,24,0,16"
-                            FontSize="15"
-                            Text="Write Santa a letter, and he'll instantly let you know if you've been naughty or nice!" />
-                    </StackLayout>
-                    <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
-                        <StackLayout Spacing="8">
-                            <Label FontSize="12" Text="WHAT'S YOUR NAME?" />
-                            <Entry Text="{Binding KidsName}" />
-                        </StackLayout>
-                        <StackLayout Spacing="8">
-                            <Label FontSize="12" Text="WRITE YOUR LETTER TO SANTA" />
-                            <Editor Text="{Binding LetterText}" TextColor="White" />
-                        </StackLayout>
-
+                            FontFamily="{StaticResource CircularStdBlack}"
+                            FontSize="56"
+                            Text="CARTA PARA EL NIÑO JESUS"
+                            TextColor="{StaticResource main_text_color}" />
                         <Label
+                            Margin="0,8"
+                            FontFamily="{StaticResource CircularStdBook}"
                             FontSize="16"
-                            Text="OR"
-                            TextColor="{StaticResource highlight_text}" />
+                            LineHeight="1.2"
+                            Text="¡Escribe una carta a el Niño Jesús y él te avisará de inmediato si has sido travieso o amable!"
+                            TextColor="{StaticResource main_text_color}" />
+                    </StackLayout>
+                    <controls:PancakeView
+                        Padding="20"
+                        BackgroundColor="#FFF"
+                        CornerRadius="8">
+                        <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
+                            <StackLayout Spacing="8">
+                                <Label
+                                    FontFamily="{StaticResource CircularStdMedium}"
+                                    FontSize="12"
+                                    Text="CUAL ES TU NOMBRE?"
+                                    TextColor="{StaticResource highlight_color}" />
+                                <Entry Text="{Binding KidsName}" />
+                            </StackLayout>
+                            <StackLayout Spacing="8">
+                                <Label
+                                    FontFamily="{StaticResource CircularStdMedium}"
+                                    FontSize="12"
+                                    Text="ESCRIBE TU CARTA AL NIÑO JESUS"
+                                    TextColor="{StaticResource highlight_color}" />
+                                <Editor Margin="-4,0,0,0" Text="{Binding LetterText}" />
+                            </StackLayout>
+                            <StackLayout Spacing="5">
+                                <Label FontSize="12" Text="TOMA UNA FOTO Y ENVIASELA!!" />
+                                <Button
+                                    Margin="16"
+                                    Command="{Binding TakePictureCommand}"
+                                    Text="TOMAR FOTO"
+                                    VerticalOptions="EndAndExpand" />
+                                <ff:CachedImage
+                                    HeightRequest="150"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Source="{Binding Picture}"
+                                    VerticalOptions="CenterAndExpand"
+                                    WidthRequest="150">
+                                    <ff:CachedImage.Transformations>
+                                        <ffTransformations:RoundedTransformation Radius="240" />
+                                    </ff:CachedImage.Transformations>
+                                </ff:CachedImage>
 
-                        <StackLayout Spacing="5">
-                            <Label FontSize="12" Text="TAKE A PICTURE AND SENT IT TO SANTA" />
-                            <Button
-                                Margin="16"
-                                Command="{Binding TakePictureCommand}"
-                                Text="CAMERA"
-                                VerticalOptions="EndAndExpand" />
-                            <Image
-                                HeightRequest="150"
-                                HorizontalOptions="CenterAndExpand"
-                                Source="{Binding Picture}" />
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
-                    <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
-                        <Button
-                            Margin="16"
-                            Command="{Binding SendLetterCommand}"
-                            Text="SEND LETTER TO SANTA"
-                            VerticalOptions="EndAndExpand" />
-                        <Button
-                            Margin="16"
-                            Command="{Binding SendPictureCommand}"
-                            Text="SEND PICTURE TO SANTA"
-                            VerticalOptions="EndAndExpand" />
-                    </StackLayout>
-
+                    </controls:PancakeView>
+                    <Label />
+                    <Button
+                        Command="{Binding SendLetterCommand}"
+                        Text="ENVIAR CARTA"
+                        VerticalOptions="EndAndExpand" />
                 </StackLayout>
-            </ScrollView>
-        </Grid>
-
-    </controls:PancakeView>
-
+            </Grid>
+        </controls:PancakeView>
+    </ScrollView>
 </ContentPage>
