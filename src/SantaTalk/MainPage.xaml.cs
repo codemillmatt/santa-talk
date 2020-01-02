@@ -38,7 +38,7 @@ namespace SantaTalk
             if (!_initialized)
             {
                 PositionStars();
-                RotateStars();
+                //await RotateStars().ConfigureAwait(false);
             }
 
             _initialized = true;

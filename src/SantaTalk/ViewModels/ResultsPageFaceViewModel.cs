@@ -1,11 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 using MvvmHelpers;
 using SantaTalk.Models;
+using SantaTalk.Services;
 using Xamarin.Forms.StateSquid;
 
-namespace SantaTalk
+namespace SantaTalk.ViewModels
 {
-    public class ResultsPageViewModel : BaseViewModel
+    public class ResultsPageFaceViewModel : BaseViewModel
     {
         string kidsName;
         public string KidsName
@@ -19,6 +21,13 @@ namespace SantaTalk
         {
             get => letterText;
             set => SetProperty(ref letterText, value);
+        }
+
+        Stream _photoStream;
+        public Stream PhotoStream
+        {
+            get => _photoStream;
+            set => SetProperty(ref _photoStream, value);
         }
 
         State currentState = State.Loading;
@@ -49,6 +58,27 @@ namespace SantaTalk
             set => SetProperty(ref giftDecision, value);
         }
 
+        string ageComment;
+        public string AgeComment
+        {
+            get => ageComment;
+            set => SetProperty(ref ageComment, value);
+        }
+
+        string smileComment;
+        public string SmileComment
+        {
+            get => smileComment;
+            set => SetProperty(ref smileComment, value);
+        }
+
+        string kidsNameColor = "#ffffff";
+        public string KidsNameColor
+        {
+            get => kidsNameColor;
+            set => SetProperty(ref kidsNameColor, value);
+        }
+
         public async Task SendLetterToSanta()
         {
             CurrentState = State.Loading;
@@ -68,12 +98,26 @@ namespace SantaTalk
                 return;
             }
 
+            var uploadService = new UploadPictureService();
+            var photoResult = await uploadService.UploadPictureForSanta(PhotoStream);
+
             var commentsService = new SantasCommentsService();
-            var comments = commentsService.MakeGiftDecision(results);
+            var comments = commentsService.MakeGiftDecision(results, photoResult);
 
             SantasComment = comments.SentimentInterpretation;
             GiftDecision = comments.GiftPrediction;
             DetectedLanguage = results.DetectedLanguage;
+            AgeComment = comments.AgeComment;
+            SmileComment = comments.SmileComment;
+
+            if (photoResult.Gender == "Male")
+            {
+                KidsNameColor = "#ccffff";
+            }
+            else if (photoResult.Gender == "Female")
+            {
+                KidsNameColor = "#ffcce6";
+            }
 
             CurrentState = State.Success;
         }

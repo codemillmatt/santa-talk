@@ -9,7 +9,10 @@
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SantaTalk.Models\SantaTalk.Models.csproj" />
+    <ProjectReference Include="..\Functions\SantaTalk.Models\SantaTalk.Models.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <None Update="host.json">

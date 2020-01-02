@@ -1,45 +1,83 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
+    x:Class="SantaTalk.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:controls="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodels="clr-namespace:SantaTalk"
-    mc:Ignorable="d"
-    NavigationPage.HasNavigationBar="False"
-    NavigationPage.BackButtonTitle=""
     ios:Page.UseSafeArea="True"
     BackgroundColor="{StaticResource dark_gradient}"
-    x:Class="SantaTalk.MainPage">
+    NavigationPage.BackButtonTitle=""
+    NavigationPage.HasNavigationBar="False"
+    mc:Ignorable="d">
 
     <ContentPage.BindingContext>
         <viewmodels:MainPageViewModel />
     </ContentPage.BindingContext>
 
-    <controls:PancakeView BackgroundGradientStartColor="{StaticResource dark_gradient}" 
-                          BackgroundGradientEndColor="{StaticResource light_gradient}">
+    <controls:PancakeView BackgroundGradientEndColor="{StaticResource light_gradient}" BackgroundGradientStartColor="{StaticResource dark_gradient}">
 
         <Grid x:Name="MainGrid">
             <ScrollView VerticalOptions="FillAndExpand">
-                <StackLayout VerticalOptions="FillAndExpand" Padding="24" Spacing="0">
+                <StackLayout
+                    Padding="24"
+                    Spacing="0"
+                    VerticalOptions="FillAndExpand">
                     <StackLayout VerticalOptions="CenterAndExpand">
-                        <Label Text="WELCOME TO" FontSize="16" TextColor="{StaticResource highlight_text}"/>
-                        <Label Text="Santa Talk" FontSize="48"/>
-                        <Label Margin="0,24,0,16" FontSize="15" Text="Write Santa a letter, and he'll instantly let you know if you've been naughty or nice!" />
+                        <Label
+                            FontSize="16"
+                            Text="WELCOME TO"
+                            TextColor="{StaticResource highlight_text}" />
+                        <Label FontSize="48" Text="Santa Talk" />
+                        <Label
+                            Margin="0,24,0,16"
+                            FontSize="15"
+                            Text="Write Santa a letter, and he'll instantly let you know if you've been naughty or nice!" />
                     </StackLayout>
                     <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
                         <StackLayout Spacing="8">
-                            <Label Text="WHAT'S YOUR NAME?" FontSize="12"/>
+                            <Label FontSize="12" Text="WHAT'S YOUR NAME?" />
                             <Entry Text="{Binding KidsName}" />
                         </StackLayout>
                         <StackLayout Spacing="8">
-                            <Label Text="WRITE YOUR LETTER TO SANTA" FontSize="12"/>
-                            <Editor Text="{Binding LetterText}" TextColor="White"/>
+                            <Label FontSize="12" Text="WRITE YOUR LETTER TO SANTA" />
+                            <Editor Text="{Binding LetterText}" TextColor="White" />
+                        </StackLayout>
+
+                        <Label
+                            FontSize="16"
+                            Text="OR"
+                            TextColor="{StaticResource highlight_text}" />
+
+                        <StackLayout Spacing="5">
+                            <Label FontSize="12" Text="TAKE A PICTURE AND SENT IT TO SANTA" />
+                            <Button
+                                Margin="16"
+                                Command="{Binding TakePictureCommand}"
+                                Text="CAMERA"
+                                VerticalOptions="EndAndExpand" />
+                            <Image
+                                HeightRequest="150"
+                                HorizontalOptions="CenterAndExpand"
+                                Source="{Binding Picture}" />
                         </StackLayout>
                     </StackLayout>
-                    <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Margin="16" Command="{Binding SendLetterCommand}" />
+                    <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                        <Button
+                            Margin="16"
+                            Command="{Binding SendLetterCommand}"
+                            Text="SEND LETTER TO SANTA"
+                            VerticalOptions="EndAndExpand" />
+                        <Button
+                            Margin="16"
+                            Command="{Binding SendPictureCommand}"
+                            Text="SEND PICTURE TO SANTA"
+                            VerticalOptions="EndAndExpand" />
+                    </StackLayout>
+
                 </StackLayout>
             </ScrollView>
         </Grid>

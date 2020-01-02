@@ -1,15 +1,21 @@
-﻿using System;
+﻿using FFImageLoading.Forms;
+using SantaTalk.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using FFImageLoading.Forms;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.StateSquid;
+using Xamarin.Forms.Xaml;
 
 namespace SantaTalk
 {
-    public partial class ResultsPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ResultsPageFace : ContentPage
     {
         private readonly int _formsWidth;
         private readonly int _formsHeight;
@@ -17,9 +23,9 @@ namespace SantaTalk
         private bool _initialized = false;
         private bool _starsAdded = false;
         private List<VisualElement> _stars = new List<VisualElement>();
-        private ResultsPageViewModel vm = new ResultsPageViewModel();
+        private ResultsPageFaceViewModel vm = new ResultsPageFaceViewModel();
 
-        public ResultsPage(string kidsName, string letterText)
+        public ResultsPageFace(string kidsName, string letterText, Stream stream)
         {
             InitializeComponent();
 
@@ -28,6 +34,7 @@ namespace SantaTalk
             vm.KidsName = kidsName;
             vm.LetterText = letterText;
             vm.CurrentState = State.Loading;
+            vm.PhotoStream = stream;
 
             _formsWidth = Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density);
             _formsHeight = Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density);

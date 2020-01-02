@@ -9,7 +9,7 @@ using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
 using System.Linq;
 using SantaTalk.Models;
 
-namespace SantaTalk.Functions
+namespace SantaTalk.MyFunctions
 {
     public static class WriteSanta
     {
@@ -59,7 +59,7 @@ namespace SantaTalk.Functions
                     LetterText = theLetter.LetterText,
                     SentimentScore = detectedSentiments.Score.Value
                 };
-            } 
+            }
             catch (Exception ex)
             {
                 log.LogError(ex.ToString());
