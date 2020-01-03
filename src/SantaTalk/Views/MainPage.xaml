@@ -13,12 +13,20 @@
     ios:Page.UseSafeArea="true"
     BackgroundColor="#080C28"
     NavigationPage.BackButtonTitle=""
-    NavigationPage.HasNavigationBar="False"
     mc:Ignorable="d">
 
     <ContentPage.BindingContext>
         <viewmodels:MainPageViewModel />
     </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding MapComand}"
+            Icon="Exit.png"
+            Order="Secondary"
+            Priority="1"
+            Text="Map" />
+    </ContentPage.ToolbarItems>
 
     <ScrollView VerticalOptions="FillAndExpand">
         <controls:PancakeView BackgroundGradientEndColor="#0e2746" BackgroundGradientStartColor="#080C28">

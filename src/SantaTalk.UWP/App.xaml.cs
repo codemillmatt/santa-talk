@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Xamarin.Essentials;
 
 namespace SantaTalk.UWP
 {
@@ -55,7 +56,8 @@ namespace SantaTalk.UWP
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 CachedImageRenderer.Init();
-                UserDialogs.Init();
+                UserDialogs.Init(); 
+                Rg.Plugins.Popup.Popup.Init();
                 Xamarin.Forms.Forms.Init(e);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)

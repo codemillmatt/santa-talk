@@ -132,14 +132,17 @@ namespace SantaTalk.ViewModels
                 return;
             }
 
+            DetectedLanguage = results.DetectedLanguage;
+
             if (results.DetectedLanguage.ToLower() == "spanish")
             {
                 DetectedLanguage = "español";
             }
-            else
+            if (results.DetectedLanguage.ToLower() == "english")
             {
-                DetectedLanguage = results.DetectedLanguage;
+                DetectedLanguage = "ingles";
             }
+
 
             SantasComment = comments.SentimentInterpretation;
             GiftDecision = comments.GiftPrediction;
@@ -154,6 +157,8 @@ namespace SantaTalk.ViewModels
             {
                 KidsNameColor = "#ffcce6";
             }
+
+            await MobileServiceClientService.Instance.SavePositionAsync(letter.KidName);
 
             CurrentState = State.Success;
         }

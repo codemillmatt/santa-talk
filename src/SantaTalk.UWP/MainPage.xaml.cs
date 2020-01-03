@@ -26,6 +26,8 @@ namespace SantaTalk.UWP
         {
             this.InitializeComponent();
 
+            Xamarin.FormsMaps.Init("hFHkUYRgnoeYpkqHVUxB~zeXMhLGqcCcDye4wChkOgQ~AtNQDO5zFiRXQ7GBfn3aYgTWnmhNKJeyrhMxfnhf3eJmE1Zf8e2O7tsMB-z8f0AE");
+
             LoadApplication(new SantaTalk.App());
         }
     }

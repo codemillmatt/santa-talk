@@ -7,6 +7,7 @@ using MvvmHelpers;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using SantaTalk.Helpers;
+using SantaTalk.Views;
 using Xamarin.Forms;
 
 namespace SantaTalk
@@ -20,6 +21,7 @@ namespace SantaTalk
         public ICommand SendPictureCommand { get; }
 
         public ICommand TakePictureCommand { get; }
+        public ICommand MapComand { get; }
 
         public MainPageViewModel()
         {
@@ -34,6 +36,13 @@ namespace SantaTalk
             });
 
             TakePictureCommand = new Command(async () => await SendImage(), () => !IsBusy);
+
+            MapComand = new Command(async () => await MapPage(), () => !IsBusy);
+        }
+
+        private async Task MapPage()
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new MapPage());
         }
 
         string kidsName;
@@ -43,7 +52,7 @@ namespace SantaTalk
             set => SetProperty(ref kidsName, value);
         }
 
-        string letterText = "Querido Santa...";
+        string letterText = "Querido Niño Jesús...";
         public string LetterText
         {
             get => letterText;

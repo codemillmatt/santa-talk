@@ -74,7 +74,7 @@ namespace SantaTalk
 
             if (pictureForSantaResults.Age > 14)
             {
-                comments.AgeComment = "¿No eres demasiado viejo para un regalo del Niño Jesús?";
+                comments.AgeComment = $"¿Ohh pareces de {pictureForSantaResults.Age}, No eres demasiado viejo para un regalo del Niño Jesús?";
             }
 
             if (pictureForSantaResults.Smile > 0.5 && results.SentimentScore >= .3)
