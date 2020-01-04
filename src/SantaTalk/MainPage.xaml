@@ -7,6 +7,7 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:controls="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:viewmodels="clr-namespace:SantaTalk"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
     mc:Ignorable="d"
     NavigationPage.HasNavigationBar="False"
     NavigationPage.BackButtonTitle=""
@@ -18,6 +19,11 @@
         <viewmodels:MainPageViewModel />
     </ContentPage.BindingContext>
 
+    <ContentPage.Resources>
+        <x:Boolean x:Key="FalseValue">False</x:Boolean>
+        <x:Boolean x:Key="TrueValue">True</x:Boolean>
+    </ContentPage.Resources>
+
     <controls:PancakeView BackgroundGradientStartColor="{StaticResource dark_gradient}" 
                           BackgroundGradientEndColor="{StaticResource light_gradient}">
 
@@ -27,19 +33,33 @@
                     <StackLayout VerticalOptions="CenterAndExpand">
                         <Label Text="WELCOME TO" FontSize="16" TextColor="{StaticResource highlight_text}"/>
                         <Label Text="Santa Talk" FontSize="48"/>
-                        <Label Margin="0,24,0,16" FontSize="15" Text="Write Santa a letter, and he'll instantly let you know if you've been naughty or nice!" />
+                        <Label Margin="0,16" FontSize="15" Text="Write Santa a letter, and he'll instantly let you know if you've been naughty or nice!" />
                     </StackLayout>
-                    <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
+                    <StackLayout Spacing="8" VerticalOptions="CenterAndExpand">
                         <StackLayout Spacing="8">
                             <Label Text="WHAT'S YOUR NAME?" FontSize="12"/>
                             <Entry Text="{Binding KidsName}" />
                         </StackLayout>
                         <StackLayout Spacing="8">
-                            <Label Text="WRITE YOUR LETTER TO SANTA" FontSize="12"/>
+                            <StackLayout Orientation="Horizontal" Spacing="8">
+                                <Label Text="WRITE YOUR LETTER TO SANTA" FontSize="12" VerticalOptions="Center"/>
+
+                                <ffimageloading:CachedImage Source="camera.png" Aspect="AspectFill" DownsampleToViewSize="True">
+                                    <ffimageloading:CachedImage.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ScanLetterCommand}" CommandParameter="{StaticResource TrueValue}" />
+                                    </ffimageloading:CachedImage.GestureRecognizers>
+                                </ffimageloading:CachedImage>
+                                
+                                <ffimageloading:CachedImage Source="photo.png" Aspect="AspectFill" DownsampleToViewSize="True">
+                                    <ffimageloading:CachedImage.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ScanLetterCommand}" CommandParameter="{StaticResource FalseValue}" />
+                                    </ffimageloading:CachedImage.GestureRecognizers>
+                                </ffimageloading:CachedImage>
+                            </StackLayout>
                             <Editor Text="{Binding LetterText}" TextColor="White"/>
                         </StackLayout>
                     </StackLayout>
-                    <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Margin="16" Command="{Binding SendLetterCommand}" />
+                    <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Margin="8" Command="{Binding SendLetterCommand}" />
                 </StackLayout>
             </ScrollView>
         </Grid>
