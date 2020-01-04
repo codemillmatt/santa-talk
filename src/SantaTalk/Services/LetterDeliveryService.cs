@@ -3,12 +3,20 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SantaTalk.Models;
+using SantaTalk.Services;
 using Xamarin.Essentials;
 
 namespace SantaTalk
 {
     public class LetterDeliveryService
     {
+        private LettersHistoryService _lettersHistoryService;
+
+        public LetterDeliveryService()
+        {
+            _lettersHistoryService = new LettersHistoryService();
+        }
+
         //string santaUrl = "{REPLACE WITH YOUR FUNCTION URL}/api/WriteSanta";
 
         string santaUrl = "http://localhost:7071/api/WriteSanta";
@@ -30,6 +38,8 @@ namespace SantaTalk
                 var httpResponse = await httpClient.PostAsync(santaUrl, new StringContent(letterJson));
 
                 results = JsonConvert.DeserializeObject<SantaResults>(await httpResponse.Content.ReadAsStringAsync());
+                
+                _lettersHistoryService.SaveLetterAndResults(letter, results);
 
                 return results;
             }

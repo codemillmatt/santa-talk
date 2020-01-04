@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="SantaTalk.LetterHistoryPage"
+             Title="History">
+    <ContentPage.Content>
+
+        <ListView
+            ItemsSource="{Binding Letters}"
+            VerticalOptions="FillAndExpand"
+            HasUnevenRows="True"
+            SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="8">
+
+                            <StackLayout Orientation="Horizontal"
+                                     Spacing="8"
+                                     Grid.Row="0">
+                                <Label Text="Sender:"
+                                   TextColor="{StaticResource dark_gradient}"
+                                   FontAttributes="Bold"/>
+                                <Label Text="{Binding Sender}"
+                                   TextColor="{StaticResource dark_gradient}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Spacing="8"
+                                     Grid.Row="1">
+                                <Label Text="Receiver:"
+                                   TextColor="{StaticResource dark_gradient}"
+                                   FontAttributes="Bold"/>
+                                <Label Text="{Binding Receiver}"
+                                   TextColor="{StaticResource dark_gradient}" />
+                            </StackLayout>
+
+                            <StackLayout Orientation="Vertical"
+                                       Grid.Row="2">
+                                <Label Text="Message:"
+                                   TextColor="{StaticResource dark_gradient}"
+                                   FontAttributes="Bold" />
+                                <Label Text="{Binding Message}"
+                                   TextColor="{StaticResource dark_gradient}"/>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

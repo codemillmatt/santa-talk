@@ -39,7 +39,12 @@
                             <Editor Text="{Binding LetterText}" TextColor="White"/>
                         </StackLayout>
                     </StackLayout>
-                    <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Margin="16" Command="{Binding SendLetterCommand}" />
+                    <StackLayout Margin="16"
+                                 VerticalOptions="EndAndExpand"
+                                 Spacing="16">
+                        <Button  Text="SEND TO SANTA" Command="{Binding SendLetterCommand}" />
+                        <Button  Text="HISTORY" Command="{Binding SeeHistoryCommand}" />  
+                    </StackLayout>
                 </StackLayout>
             </ScrollView>
         </Grid>
