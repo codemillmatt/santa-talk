@@ -4,7 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:controls="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"             
+    xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"     
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+     xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
     x:Class="SantaTalk.ResultsPage"
     ios:Page.UseSafeArea="True"
     BackgroundColor="{StaticResource dark_gradient}"
@@ -25,7 +27,6 @@
                           BackgroundGradientEndColor="{StaticResource light_gradient}">
 
             <Grid x:Name="MainGrid" state:StateLayout.CurrentState="{Binding CurrentState}">
-                                
                 <state:StateLayout.StateViews>
                     <state:StateView StateKey="Loading">
                         <StackLayout Margin="24" Spacing="0">
@@ -42,6 +43,30 @@
                     </state:StateView>
                     <state:StateView StateKey="Error">
                         <StackLayout Margin="24" Spacing="0">
+                            <controls:PancakeView Margin="0,24,0,0" BackgroundColor="{StaticResource white}" CornerRadius="8">
+                                <StackLayout Orientation="Horizontal">
+                                    <ffimageloading:CachedImage 
+                                      Source="{Binding FaceImgSource}"
+                                      LoadingPlaceholder="ic_loader.jpg"
+                                      ErrorPlaceholder="profilemale.jpg"
+                                      HorizontalOptions="Center" 
+                                      CacheType="Memory"
+                                      Margin="30,20,30,5"
+                                      Aspect="AspectFit"
+                                      HeightRequest="128"
+                                        WidthRequest="128"                                       
+                                      >
+                                        <ffimageloading:CachedImage.Transformations>
+                                            <fftransformations:CircleTransformation BorderSize="3" BorderHexColor="#34C04E"/>
+                                        </ffimageloading:CachedImage.Transformations>
+                                    </ffimageloading:CachedImage>
+                                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding FaceAge, StringFormat='Age {0}'}" TextColor="Black" FontSize="18"/>
+                                        <Label Text="{Binding FaceGender, StringFormat='Gender {0}'}" TextColor="Black" FontSize="18"/>
+                                        <Label Text="{Binding FaceNaughty, StringFormat='Naughty {0}'}" TextColor="Black" FontSize="18"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </controls:PancakeView>
                             <Label Text="HERE IS SANTA'S LETTER BACK TO YOU" FontSize="16" TextColor="{StaticResource highlight_text}"/>
                             <Label Text="{Binding KidsName, StringFormat='Dear {0},'}" FontSize="48"/>
                             <controls:PancakeView Margin="0,24,0,0" BackgroundColor="{StaticResource white}" CornerRadius="8">
@@ -55,6 +80,30 @@
                     </state:StateView>
                     <state:StateView StateKey="Success">
                         <StackLayout Margin="24" Spacing="0">
+                            <controls:PancakeView Margin="0,24,0,0" BackgroundColor="{StaticResource white}" CornerRadius="8">
+                                <StackLayout Orientation="Horizontal">
+                                    <ffimageloading:CachedImage 
+                                      Source="{Binding FaceImgSource}"
+                                      LoadingPlaceholder="ic_loader.jpg"
+                                      ErrorPlaceholder="profilemale.jpg"
+                                      HorizontalOptions="Center" 
+                                      CacheType="Memory"
+                                      Margin="30,20,30,5"
+                                      Aspect="AspectFit"
+                                      HeightRequest="128"
+                                        WidthRequest="128"                                       
+                                      >
+                                        <ffimageloading:CachedImage.Transformations>
+                                            <fftransformations:CircleTransformation BorderSize="3" BorderHexColor="#34C04E"/>
+                                        </ffimageloading:CachedImage.Transformations>
+                                    </ffimageloading:CachedImage>
+                                    <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding FaceAge, StringFormat='Age {0}'}" TextColor="Black" FontSize="18"/>
+                                        <Label Text="{Binding FaceGender, StringFormat='Gender {0}'}" TextColor="Black" FontSize="18"/>
+                                        <Label Text="{Binding FaceNaughty, StringFormat='Naughty {0}'}" TextColor="Black" FontSize="18"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </controls:PancakeView>
                             <Label Text="HERE IS SANTA'S LETTER BACK TO YOU" FontSize="16" TextColor="{StaticResource highlight_text}"/>
                             <Label Text="{Binding KidsName, StringFormat='Dear {0},'}" FontSize="48"/>
 
@@ -91,7 +140,7 @@
                 </state:StateLayout.StateViews>
 
             </Grid>
-            
+
         </controls:PancakeView>
 
     </ContentPage.Content>

@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Plugin.Media.Abstractions;
 using SantaTalk.Models;
 using Xamarin.Essentials;
 
@@ -41,6 +45,34 @@ namespace SantaTalk
             }
 
             return results;
+        }
+        public async Task<List<FaceInfo>> sendPictureToSanta(MediaFile f)
+        {
+
+            using (HttpClient client = new HttpClient())
+            {
+                var request = new HttpRequestMessage(HttpMethod.Post, "https://sgserverless20191227125952.azurewebsites.net/api/Function1?code=5XkValKn15DaoMVvMaz8i6MMBrnZlfAdtDn2yONugCI0P36ByiiYuw==");
+
+                var content = new MultipartFormDataContent();
+
+                byte[] byteArray = File.ReadAllBytes(f.Path);
+
+                var webClient = new WebClient();
+
+                content.Add(new ByteArrayContent(byteArray), "file", "file.jpg");
+
+                request.Content = content;
+
+                var response = await client.SendAsync(request).ConfigureAwait(false);
+
+                response.EnsureSuccessStatusCode();
+
+                List<FaceInfo> fileInfo = JsonConvert.DeserializeObject<List<FaceInfo>>(await response.Content.ReadAsStringAsync().ConfigureAwait(false));
+
+                return fileInfo;
+            }
+
+
         }
     }
 }

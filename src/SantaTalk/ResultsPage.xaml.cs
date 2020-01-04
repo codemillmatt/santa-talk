@@ -31,6 +31,7 @@ namespace SantaTalk
 
             _formsWidth = Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density);
             _formsHeight = Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density);
+            vm.preparePictureSantaAsync();
         }
 
         protected override async void OnAppearing()

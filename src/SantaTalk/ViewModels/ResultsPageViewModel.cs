@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MvvmHelpers;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using SantaTalk.Models;
 using Xamarin.Forms.StateSquid;
 
@@ -8,6 +10,8 @@ namespace SantaTalk
 {
     public class ResultsPageViewModel : BaseViewModel
     {
+        private SantaResults resultsLetter;
+        private FaceInfo resultsFace;
         string kidsName;
         public string KidsName
         {
@@ -50,6 +54,32 @@ namespace SantaTalk
             set => SetProperty(ref giftDecision, value);
         }
 
+        string faceImgSource;
+        public string FaceImgSource
+        {
+            get => faceImgSource;
+            set => SetProperty(ref faceImgSource, value);
+        }
+        double faceAge;
+        public double FaceAge
+        {
+            get => faceAge;
+            set => SetProperty(ref faceAge, value);
+        }
+        string faceGender;
+        public string FaceGender
+        {
+            get => faceGender;
+            set => SetProperty(ref faceGender, value);
+        }
+        bool faceNaughty;
+        public bool FaceNaughty
+        {
+            get => faceNaughty;
+            set => SetProperty(ref faceNaughty, value);
+        }
+
+
         public async Task SendLetterToSanta()
         {
             CurrentState = State.Loading;
@@ -61,22 +91,67 @@ namespace SantaTalk
             };
 
             var letterService = new LetterDeliveryService();
-            var results = await letterService.WriteLetterToSanta(letter);
+            resultsLetter = await letterService.WriteLetterToSanta(letter);
 
-            if (results.SentimentScore == -1)
+            if (resultsLetter.SentimentScore == -1)
             {
-                CurrentState = State.Error;
+                resultsLetter.SentimentScore = 1;
+                // CurrentState = State.Error;
                 return;
             }
 
+
+
+
+
+        }
+
+        public async Task preparePictureSantaAsync()
+        {
+            CurrentState = State.Loading;
+
+            var pathToNewFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+
+
+            var fold = System.IO.Directory.CreateDirectory(pathToNewFolder + "/testSanta");
+
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                Directory = "testSanta",
+                SaveToAlbum = true,
+                CompressionQuality = 75,
+                CustomPhotoSize = 50,
+                PhotoSize = PhotoSize.MaxWidthHeight,
+                MaxWidthHeight = 2000,
+                DefaultCamera = CameraDevice.Front
+
+            });
+            var letterService = new LetterDeliveryService();
+            var result = await letterService.sendPictureToSanta(file);
+            if (result.Count > 0)
+            {
+                //prepare to multiple faces
+                resultsFace = result[0];
+            }
+            FaceImgSource = file.Path;
+            FaceGender = resultsFace.Gender;
+            FaceAge = resultsFace.Age;
+            FaceNaughty = resultsFace.smile == 1 ? false : true;
+            prepareResult();
+            CurrentState = State.Success;
+        }
+
+        private void prepareResult()
+        {
             var commentsService = new SantasCommentsService();
-            var comments = commentsService.MakeGiftDecision(results);
+            var comments = commentsService.MakeGiftDecision(resultsLetter, resultsFace);
 
             SantasComment = comments.SentimentInterpretation;
             GiftDecision = comments.GiftPrediction;
-            DetectedLanguage = results.DetectedLanguage;
-
+            DetectedLanguage = resultsLetter.DetectedLanguage;
             CurrentState = State.Success;
         }
+
     }
 }
