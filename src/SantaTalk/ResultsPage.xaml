@@ -57,6 +57,7 @@
                         <StackLayout Margin="24" Spacing="0">
                             <Label Text="HERE IS SANTA'S LETTER BACK TO YOU" FontSize="16" TextColor="{StaticResource highlight_text}"/>
                             <Label Text="{Binding KidsName, StringFormat='Dear {0},'}" FontSize="48"/>
+                            <Label Text="{Binding DetectedAge}" FontSize="36"/>
 
                             <controls:PancakeView Margin="0,24,0,0" BackgroundColor="{StaticResource white}" CornerRadius="8">
                                 <StackLayout Padding="24" Spacing="8">
@@ -72,6 +73,19 @@
                                     </Label>
                                     <Label Text="{Binding SantasComment}" Style="{StaticResource SantaText}" />
                                     <Label Text="{Binding GiftDecision}" Style="{StaticResource SantaText}" />
+                                    <Label Text="{Binding ToyComment}" Style="{StaticResource SantaText}" />
+                                    <Label HorizontalOptions="Center" VerticalOptions="Fill">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="here" TextColor="Blue" TextDecorations="Underline">
+                                                    <Span.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding ClickCommand}" CommandParameter="{Binding ToyColoringContentUrl}" />
+                                                    </Span.GestureRecognizers>
+                                                </Span>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Image x:Name="toyThumbnailUrl" Source="{Binding ToyColoringThumbnailUrl}"/>
                                     <Label Text="Love," Margin="0,15,0,0" FontSize="12" Style="{StaticResource SantaText}" />
                                     <Label Text="Santa Claus" Style="{StaticResource SantaText}" />
                                 </StackLayout>

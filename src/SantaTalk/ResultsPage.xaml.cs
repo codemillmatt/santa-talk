@@ -39,6 +39,8 @@ namespace SantaTalk
 
             await vm.SendLetterToSanta();
 
+            await vm.SendLetterToSantaAndGetColoring();
+
             if (!_initialized)
             {
                 PositionStars();

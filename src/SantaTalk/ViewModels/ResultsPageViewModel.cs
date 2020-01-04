@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using MvvmHelpers;
 using SantaTalk.Models;
+using SantaTalk.Services;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 using Xamarin.Forms.StateSquid;
 
 namespace SantaTalk
@@ -50,6 +54,34 @@ namespace SantaTalk
             set => SetProperty(ref giftDecision, value);
         }
 
+        string detectedAge;
+        public string DetectedAge
+        {
+            get => detectedAge;
+            set => SetProperty(ref detectedAge, value);
+        }
+
+        string toyComment;
+        public string ToyComment
+        {
+            get => toyComment;
+            set => SetProperty(ref toyComment, value);
+        }
+
+        string toyColoringContentUrl;
+        public string ToyColoringContentUrl
+        {
+            get => toyColoringContentUrl;
+            set => SetProperty(ref toyColoringContentUrl, value);
+        }
+
+        string toyColoringThumbnailUrl;
+        public string ToyColoringThumbnailUrl
+        {
+            get => toyColoringThumbnailUrl;
+            set => SetProperty(ref toyColoringThumbnailUrl, value);
+        }
+
         public async Task SendLetterToSanta()
         {
             CurrentState = State.Loading;
@@ -78,5 +110,43 @@ namespace SantaTalk
 
             CurrentState = State.Success;
         }
+
+        public async Task SendLetterToSantaAndGetColoring()
+        {
+            CurrentState = State.Loading;
+
+            var letterService = new LetterDeliveryService();
+            var results = await letterService.WriteLetterToSantaAndDetectData(LetterText);
+
+            if (results.HasError)
+            {
+                CurrentState = State.Error;
+                return;
+            }
+
+            DetectedAge = (!string.IsNullOrEmpty(results.Age)) ? $"({results.Age})" : "";
+            KidsName = results.KidName;
+            
+
+            if (string.IsNullOrEmpty(results.Toy))
+                return;
+
+            var santaToyService = new SantaToyService();
+            var toycoloringResults = await santaToyService.GetToyColoring(results.Toy);
+
+            if (!results.HasError)
+            {
+                ToyComment = $"Follow this link to download a drawing corresponding to {toycoloringResults.Toy} :";
+                ToyColoringContentUrl = toycoloringResults.ContentUrl;
+                ToyColoringThumbnailUrl = toycoloringResults.ThumbnailUrl;
+            }
+
+            CurrentState = State.Success;
+        }
+
+        public ICommand ClickCommand => new Command<string>((url) =>
+        {
+            Launcher.OpenAsync(new System.Uri(url));
+        });
     }
 }
