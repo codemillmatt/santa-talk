@@ -16,6 +16,7 @@ namespace SantaTalk
         //string santaUrl = "{REPLACE WITH YOUR FUNCTION URL}/api/WriteSanta";
 
         string santaUrl = "http://localhost:7071/api/WriteSanta";
+        string santaPictureUrl = "http://localhost:7071/api/SendPicture";
         static HttpClient httpClient = new HttpClient();
 
         public async Task<SantaResults> WriteLetterToSanta(SantaLetter letter)
@@ -51,7 +52,7 @@ namespace SantaTalk
 
             using (HttpClient client = new HttpClient())
             {
-                var request = new HttpRequestMessage(HttpMethod.Post, "https://sgserverless20191227125952.azurewebsites.net/api/Function1?code=5XkValKn15DaoMVvMaz8i6MMBrnZlfAdtDn2yONugCI0P36ByiiYuw==");
+                var request = new HttpRequestMessage(HttpMethod.Post, santaPictureUrl);
 
                 var content = new MultipartFormDataContent();
 
