@@ -13,6 +13,10 @@ namespace SantaTalk
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new ResultsPage(KidsName, LetterText));
             });
+            ConnectToChatCommand = new Command(async () =>
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new ChatPage());
+            });
         }
 
         string kidsName;
@@ -30,5 +34,6 @@ namespace SantaTalk
         }
 
         public ICommand SendLetterCommand { get; }
+        public ICommand ConnectToChatCommand { get; }
     }
 }

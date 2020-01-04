@@ -22,12 +22,12 @@
                           BackgroundGradientEndColor="{StaticResource light_gradient}">
 
         <Grid x:Name="MainGrid">
-            <ScrollView VerticalOptions="FillAndExpand">
+            <ScrollView VerticalOptions="StartAndExpand">
                 <StackLayout VerticalOptions="FillAndExpand" Padding="24" Spacing="0">
-                    <StackLayout VerticalOptions="CenterAndExpand">
+                    <StackLayout>
                         <Label Text="WELCOME TO" FontSize="16" TextColor="{StaticResource highlight_text}"/>
-                        <Label Text="Santa Talk" FontSize="48"/>
-                        <Label Margin="0,24,0,16" FontSize="15" Text="Write Santa a letter, and he'll instantly let you know if you've been naughty or nice!" />
+                        <Label Text="Santa Talk" FontSize="38"/>
+                        <Label Margin="0,12,0,12" FontSize="15" Text="Write Santa a letter, and he'll instantly let you know if you've been naughty or nice!" />
                     </StackLayout>
                     <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
                         <StackLayout Spacing="8">
@@ -39,9 +39,12 @@
                             <Editor Text="{Binding LetterText}" TextColor="White"/>
                         </StackLayout>
                     </StackLayout>
-                    <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Margin="16" Command="{Binding SendLetterCommand}" />
+                        <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Margin="16,16,16,0" FontSize="Small" Command="{Binding SendLetterCommand}" />
+                        <Button VerticalOptions="End" BackgroundColor="Transparent" Text="Need more info?" TextColor="White" FontSize="Micro" Margin="0" Command="{Binding ConnectToChatCommand}"/>
+
+                    
                 </StackLayout>
-            </ScrollView>
+             </ScrollView>
         </Grid>
 
     </controls:PancakeView>
