@@ -22,8 +22,14 @@
                           BackgroundGradientEndColor="{StaticResource light_gradient}">
 
         <Grid x:Name="MainGrid">
+            
             <ScrollView VerticalOptions="FillAndExpand">
                 <StackLayout VerticalOptions="FillAndExpand" Padding="24" Spacing="0">
+                    <StackLayout IsVisible="{Binding AnalysePicture}" >
+                        <Label Text="Analyse letter to Santa" FontSize="15" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Margin="10"></Label>
+                        <ActivityIndicator  IsRunning="true"/>
+                    </StackLayout>
+                 
                     <StackLayout VerticalOptions="CenterAndExpand">
                         <Label Text="WELCOME TO" FontSize="16" TextColor="{StaticResource highlight_text}"/>
                         <Label Text="Santa Talk" FontSize="48"/>
@@ -40,6 +46,7 @@
                         </StackLayout>
                     </StackLayout>
                     <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Margin="16" Command="{Binding SendLetterCommand}" />
+                    <Button VerticalOptions="EndAndExpand" Text="Tate Picture of Handwritten Letter" Margin="16" Command="{Binding TakePictureCommand}"></Button>
                 </StackLayout>
             </ScrollView>
         </Grid>
