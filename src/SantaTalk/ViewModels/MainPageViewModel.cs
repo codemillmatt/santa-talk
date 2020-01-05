@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using MvvmHelpers;
+using SantaTalk.Pages;
 using Xamarin.Forms;
 
 namespace SantaTalk

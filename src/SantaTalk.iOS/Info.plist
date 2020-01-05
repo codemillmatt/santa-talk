@@ -38,6 +38,8 @@
 	<dict>
 		<key>NSAllowLocalNetworking</key>
 		<true/>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
 	</dict>
 	<key>UIAppFonts</key>
 	<array>

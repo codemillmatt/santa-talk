@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    NavigationPage.HasNavigationBar="False"
+    NavigationPage.BackButtonTitle=""
+    ios:Page.UseSafeArea="True"
+    BackgroundColor="{StaticResource dark_gradient}"
+    xmlns:viewmodels="clr-namespace:SantaTalk"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:utils="clr-namespace:SantaTalk.Utils"
+    xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Class="SantaTalk.Pages.ChatPage">
+    <ContentPage.BindingContext>
+        <viewmodels:ChatPageViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="receivedMessageTemplate">
+                <ViewCell>
+                    <Grid BackgroundColor="Blue">
+                        <Label Text="{Binding Message}"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="sentMessageTemplate">
+                <ViewCell>
+                    <Grid BackgroundColor="Red">
+                        <Label Text="{Binding Message}"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+            <utils:ChatMessageTemplateSelector x:Key="chatMessageTemplateSelector"
+                                               SentMessageTemplate="{StaticResource sentMessageTemplate}"
+                                               ReceivedMessageTemplate="{StaticResource receivedMessageTemplate}"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" VerticalOptions="Start" Text="ELF INFO CHAT" FontSize="16" TextColor="{StaticResource highlight_text}"/>
+            <pancakeview:PancakeView Grid.Row="1" BackgroundColor="White" CornerRadius="8">
+                <ListView  ItemsSource="{Binding Messages}" ItemTemplate="{StaticResource chatMessageTemplateSelector}"/>
+
+            </pancakeview:PancakeView>
+            <Grid Grid.Row="2" Margin="0,20,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Entry Grid.Column="0" VerticalOptions="End" PlaceholderColor="White" Placeholder="Enter message" Text="{Binding CurrentMessage}"/>
+                <Button Grid.Column="1" Text="Send" Command="{Binding SendMessageCommand}"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

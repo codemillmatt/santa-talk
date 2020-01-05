@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SantaTalk.Functions", "SantaTalk.Functions.csproj", "{34D9351E-2E3F-41CB-A66A-8A055258C7AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34D9351E-2E3F-41CB-A66A-8A055258C7AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34D9351E-2E3F-41CB-A66A-8A055258C7AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34D9351E-2E3F-41CB-A66A-8A055258C7AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34D9351E-2E3F-41CB-A66A-8A055258C7AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
