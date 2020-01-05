@@ -43,7 +43,7 @@ namespace SantaTalk
 
         private readonly MessageModel _welcomeMessage = new MessageModel
         {
-            Message = "Welcome! \nThis is chat to share information about Christmas. My name is Charly. " +
+            Message = "Welcome! \nThis is chat to share information about Christmas. My name is Charlie. " +
             "I am automated elf bot and I do love Christmas and know ALL about it. Feel free to ask me",
             Type = MessageType.Received
         };
