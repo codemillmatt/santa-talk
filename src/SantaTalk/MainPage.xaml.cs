@@ -39,6 +39,24 @@ namespace SantaTalk
             {
                 PositionStars();
                 RotateStars();
+
+                try
+                {
+                    var userInformationService = DependencyService.Get<IUserInformation>();
+                    if (userInformationService != null)
+                    {
+                        string userName = await userInformationService.GetFirstName();
+                        if (!String.IsNullOrEmpty(userName))
+                        {
+                            (BindingContext as MainPageViewModel).KidsName = userName;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex);
+                }
+
             }
 
             _initialized = true;
