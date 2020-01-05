@@ -76,6 +76,7 @@
                                     <Label Text="Santa Claus" Style="{StaticResource SantaText}" />
                                 </StackLayout>
                             </controls:PancakeView>
+                            <Button VerticalOptions="EndAndExpand" Text="SANTA'S DESTINATION" Margin="16" Command="{Binding ShowLocationCommand}" />
                         </StackLayout>
                     </state:StateView>
                     <state:StateView StateKey="Empty">

@@ -1,13 +1,23 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using MvvmHelpers;
 using SantaTalk.Models;
+using Xamarin.Forms;
 using Xamarin.Forms.StateSquid;
 
 namespace SantaTalk
 {
     public class ResultsPageViewModel : BaseViewModel
     {
+        public ResultsPageViewModel()
+        {
+            ShowLocationCommand = new Command(async () =>
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new MapPage());
+            });
+        }
+
         string kidsName;
         public string KidsName
         {
@@ -49,6 +59,8 @@ namespace SantaTalk
             get => giftDecision;
             set => SetProperty(ref giftDecision, value);
         }
+
+        public ICommand ShowLocationCommand { get; }
 
         public async Task SendLetterToSanta()
         {
