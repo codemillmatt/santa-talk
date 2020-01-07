@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FFImageLoading.Forms;
+using SantaTalk.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.StateSquid;
 
 namespace SantaTalk
 {
-    public partial class ResultsPage : ContentPage
+    public partial class ResponsesPage : ContentPage
     {
         private readonly int _formsWidth;
         private readonly int _formsHeight;
@@ -17,20 +18,13 @@ namespace SantaTalk
         private bool _initialized = false;
         private bool _starsAdded = false;
         private List<VisualElement> _stars = new List<VisualElement>();
-        private ResultsPageViewModel vm = new ResultsPageViewModel();
+        private ResponsesPageViewModel vm = new ResponsesPageViewModel();
 
-        public ResultsPage(string kidsName, string letterText, string pictureBase64, string picturePath)
+        public ResponsesPage()
         {
             InitializeComponent();
 
             BindingContext = vm;
-
-            vm.KidsName = kidsName;
-            vm.LetterText = letterText;
-            vm.PictureBase64 = pictureBase64;
-            vm.Picture = picturePath;
-
-            vm.CurrentState = State.Loading;
 
             _formsWidth = Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density);
             _formsHeight = Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density);
@@ -40,8 +34,6 @@ namespace SantaTalk
         {
             base.OnAppearing();
 
-            await vm.SendLetterToSanta();
-
             if (!_initialized)
             {
                 PositionStars();
@@ -49,6 +41,13 @@ namespace SantaTalk
             }
 
             _initialized = true;
+
+            vm.RefreshData();
+
+            if (vm.SantaResultsDatas == null)
+                await DisplayAlert("No Data", "You have no letters from Santa, yet.", "OK");
+            else if(!vm.SantaResultsDatas.Any())
+                await DisplayAlert("No Data", "You have no letters from Santa, yet.", "OK");
         }
 
         private void PositionStars()
@@ -94,7 +93,6 @@ namespace SantaTalk
         {
             while (!cancellation.IsCancellationRequested)
             {
-
                 await element.RotateTo(360, duration, Easing.Linear);
                 await element.RotateTo(0, 0); // reset to initial position
             }

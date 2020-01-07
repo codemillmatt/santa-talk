@@ -16,7 +16,8 @@ namespace SantaTalk
                 BarTextColor = Color.Wheat
             };
 
-            MainPage = navPage;
+            //MainPage = navPage;
+            MainPage = new AppShell();
         }
 
         protected override void OnStart()

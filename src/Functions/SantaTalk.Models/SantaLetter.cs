@@ -8,5 +8,6 @@ namespace SantaTalk.Models
     {
         public string KidName { get; set; }
         public string LetterText { get; set; }
+        public string PictureBase64 { get; set; }
     }
 }

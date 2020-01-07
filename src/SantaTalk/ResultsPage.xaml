@@ -60,6 +60,8 @@
 
                             <controls:PancakeView Margin="0,24,0,0" BackgroundColor="{StaticResource white}" CornerRadius="8">
                                 <StackLayout Padding="24" Spacing="8">
+                                    <Image Source="{Binding Picture}"/>
+                                    <Label Text="{Binding Caption, StringFormat='{0}.'}" Style="{StaticResource SantaText}" />
                                     <Label Text="I think it's very nice that you took the time to write me." Style="{StaticResource SantaText}" />
                                     <Label Style="{StaticResource SantaText}">
                                         <Label.FormattedText>
