@@ -122,6 +122,12 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>4.0.1.5</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms">
@@ -155,5 +161,23 @@
     <BundleResource Include="Resources\star.png" />
     <BundleResource Include="Resources\star%402x.png" />
     <BundleResource Include="Resources\star%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\photo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\photo%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\photo%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\camera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\camera%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\camera%403x.png" />
   </ItemGroup>
 </Project>
