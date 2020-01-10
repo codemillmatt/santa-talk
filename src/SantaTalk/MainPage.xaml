@@ -31,8 +31,8 @@
                     </StackLayout>
                     <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
                         <StackLayout Spacing="8">
-                            <Label Text="WHAT'S YOUR NAME?" FontSize="12"/>
-                            <Entry Text="{Binding KidsName}" />
+                            <!--<Label Text="WHAT'S YOUR NAME?" FontSize="12"/>
+                            <Entry Text="{Binding KidsName}" />-->
                         </StackLayout>
                         <StackLayout Spacing="8">
                             <Label Text="WRITE YOUR LETTER TO SANTA" FontSize="12"/>

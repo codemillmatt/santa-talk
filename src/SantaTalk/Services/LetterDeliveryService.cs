@@ -42,5 +42,33 @@ namespace SantaTalk
 
             return results;
         }
+
+        public async Task<DetectDataResults> WriteLetterToSantaAndDetectData(string letterText)
+        {
+            string detectKeyDataUrl = "http://localhost:7071/api/DetectKeyData";
+            // if we're on the Android emulator, running functions locally, need to swap out the function url
+            if (detectKeyDataUrl.Contains("localhost") && DeviceInfo.DeviceType == DeviceType.Virtual && DeviceInfo.Platform == DevicePlatform.Android)
+            {
+                detectKeyDataUrl = "http://10.0.2.2:7071/api/DetectKeyData";
+            }
+
+            DetectDataResults results = null;
+            try
+            {
+                var httpResponse = await httpClient.PostAsync(detectKeyDataUrl, new StringContent(letterText));
+
+                results = JsonConvert.DeserializeObject<DetectDataResults>(await httpResponse.Content.ReadAsStringAsync());
+
+                return results;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+
+                results = new DetectDataResults { HasError = true};
+            }
+
+            return results;
+        }
     }
 }

@@ -22,7 +22,8 @@ namespace SantaTalk
             set => SetProperty(ref kidsName, value);
         }
 
-        string letterText = "Dear Santa...";
+        string letterText = "Dear Santa, I'm Seb. I have five years old and I play football. My Dad loves Azure Cognitives services. I hope you are doing well at the North Pole. I was a very wise child this year. I wish a small blue car this year. Be careful on the roofs. Hugs";
+        
         public string LetterText
         {
             get => letterText;
