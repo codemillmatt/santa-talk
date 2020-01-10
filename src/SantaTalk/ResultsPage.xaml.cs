@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using FFImageLoading.Forms;
@@ -19,7 +20,7 @@ namespace SantaTalk
         private List<VisualElement> _stars = new List<VisualElement>();
         private ResultsPageViewModel vm = new ResultsPageViewModel();
 
-        public ResultsPage(string kidsName, string letterText)
+        public ResultsPage(string kidsName, string letterText, Stream stream)
         {
             InitializeComponent();
 
@@ -28,6 +29,7 @@ namespace SantaTalk
             vm.KidsName = kidsName;
             vm.LetterText = letterText;
             vm.CurrentState = State.Loading;
+            vm.PhotoStream = stream;
 
             _formsWidth = Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density);
             _formsHeight = Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density);

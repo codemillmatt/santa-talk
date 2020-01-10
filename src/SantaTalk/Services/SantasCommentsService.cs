@@ -5,7 +5,7 @@ namespace SantaTalk
 {
     public class SantasCommentsService
     {
-        public SantaResultDisplay MakeGiftDecision(SantaResults results)
+        public SantaResultDisplay MakeGiftDecision(SantaResults results, PictureForSantaResults pictureForSantaResults)
         {
             // Based on the results - have Santa make some comments on the kids behavior throughout the year
             // and then decide on whether to give them a gift or not.
@@ -35,6 +35,32 @@ namespace SantaTalk
                 // excellent behavior
                 comments.SentimentInterpretation = "Wow! You were on your best behavior ever! I'm almost doubting myself you acted so good. But I'm never wrong.";
                 comments.GiftPrediction = "Gifts will rain down upon you.";
+            }
+
+            if (pictureForSantaResults.Age > 14)
+            {
+                comments.AgeComment = "Aren't you too old for a gift from Santa?";
+            }
+
+            if(pictureForSantaResults.Smile > 0.5 && results.SentimentScore >= .3)
+            {
+                comments.SmileComment = "You're so happy. You deserve to get a gift.";
+            }
+            else if (pictureForSantaResults.Smile > 0.5 && results.SentimentScore < .3)
+            {
+                comments.SmileComment = "You're so happy. But you still didn't deserve to get a gift.";
+            }
+            else if (pictureForSantaResults.Smile > 0 && results.SentimentScore >= .3 && results.SentimentScore < .66)
+            {
+                comments.SmileComment = "Why aren't you happy? Maybe you don't deserve to get a gift after all.";
+            }
+            else if (pictureForSantaResults.Smile > 0 && results.SentimentScore >= .66)
+            {
+                comments.SmileComment = "Why aren't you happy? You will get a gift.";
+            }
+            else if (pictureForSantaResults.Smile > 0 && results.SentimentScore < .3)
+            {
+                comments.SmileComment = "Why aren't you happy? You need to change your attitude if you think to get a gift.";
             }
 
             return comments;

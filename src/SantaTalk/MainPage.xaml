@@ -30,9 +30,14 @@
                         <Label Margin="0,24,0,16" FontSize="15" Text="Write Santa a letter, and he'll instantly let you know if you've been naughty or nice!" />
                     </StackLayout>
                     <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
-                        <StackLayout Spacing="8">
+                        <StackLayout Spacing="3">
                             <Label Text="WHAT'S YOUR NAME?" FontSize="12"/>
                             <Entry Text="{Binding KidsName}" />
+                        </StackLayout>
+                        <StackLayout Spacing="5">
+                            <Label Text="TAKE A PICTURE AND SENT IT TO SANTA" FontSize="12"/>
+                            <Button VerticalOptions="EndAndExpand" Text="CAMERA" Margin="16" Command="{Binding CameraCommand}" />
+                            <Image HeightRequest="60" HorizontalOptions="CenterAndExpand" Source="{Binding Picture}" />
                         </StackLayout>
                         <StackLayout Spacing="8">
                             <Label Text="WRITE YOUR LETTER TO SANTA" FontSize="12"/>
