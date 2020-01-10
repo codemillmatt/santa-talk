@@ -4,12 +4,12 @@ using System.Text;
 
 namespace SantaTalk.Models
 {
-    public class SantaResults
+    public class SantaResultModel
     {
         public int ID { get; set; }
         public string KidName { get; set; }
-        public string LetterText { get; set; }
         public string DetectedLanguage { get; set; }
-        public double SentimentScore { get; set; }
+        public string SentimentInterpretation { get; set; }
+        public string GiftPrediction { get; set; }
     }
 }

@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:controls="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"             
+    xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"
     x:Class="SantaTalk.ResultsPage"
     ios:Page.UseSafeArea="True"
     BackgroundColor="{StaticResource dark_gradient}"
@@ -25,7 +25,7 @@
                           BackgroundGradientEndColor="{StaticResource light_gradient}">
 
             <Grid x:Name="MainGrid" state:StateLayout.CurrentState="{Binding CurrentState}">
-                                
+
                 <state:StateLayout.StateViews>
                     <state:StateView StateKey="Loading">
                         <StackLayout Margin="24" Spacing="0">
@@ -76,6 +76,7 @@
                                     <Label Text="Santa Claus" Style="{StaticResource SantaText}" />
                                 </StackLayout>
                             </controls:PancakeView>
+                            <Button VerticalOptions="EndAndExpand" Text="Go to the list" Margin="16" Command="{Binding ListSantaCommand}" />
                         </StackLayout>
                     </state:StateView>
                     <state:StateView StateKey="Empty">
@@ -89,7 +90,6 @@
                         </StackLayout>
                     </state:StateView>
                 </state:StateLayout.StateViews>
-
             </Grid>
             
         </controls:PancakeView>
