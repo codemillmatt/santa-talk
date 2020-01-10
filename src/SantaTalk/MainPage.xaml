@@ -8,42 +8,42 @@
     xmlns:controls="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:viewmodels="clr-namespace:SantaTalk"
     mc:Ignorable="d"
+    BackgroundColor="#080C28"
     NavigationPage.HasNavigationBar="False"
     NavigationPage.BackButtonTitle=""
-    ios:Page.UseSafeArea="True"
-    BackgroundColor="{StaticResource dark_gradient}"
+    ios:Page.UseSafeArea="true"
     x:Class="SantaTalk.MainPage">
 
     <ContentPage.BindingContext>
         <viewmodels:MainPageViewModel />
     </ContentPage.BindingContext>
 
-    <controls:PancakeView BackgroundGradientStartColor="{StaticResource dark_gradient}" 
-                          BackgroundGradientEndColor="{StaticResource light_gradient}">
-
-        <Grid x:Name="MainGrid">
-            <ScrollView VerticalOptions="FillAndExpand">
-                <StackLayout VerticalOptions="FillAndExpand" Padding="24" Spacing="0">
+    <ScrollView VerticalOptions="FillAndExpand">
+        <controls:PancakeView BackgroundGradientStartColor="#080C28" BackgroundGradientEndColor="#0e2746">
+            <Grid>
+                <Image x:Name="Snow" IsAnimationPlaying="True" Source="snowfall.gif" Aspect="AspectFill" Opacity="0.2" />
+                <StackLayout Padding="36, 40" Spacing="0">
                     <StackLayout VerticalOptions="CenterAndExpand">
-                        <Label Text="WELCOME TO" FontSize="16" TextColor="{StaticResource highlight_text}"/>
-                        <Label Text="Santa Talk" FontSize="48"/>
-                        <Label Margin="0,24,0,16" FontSize="15" Text="Write Santa a letter, and he'll instantly let you know if you've been naughty or nice!" />
+                        <Label FontFamily="{StaticResource CircularStdMedium}" TextColor="{StaticResource highlight_color}" FontSize="14" Text="WELCOME TO" />
+                        <Label FontFamily="{StaticResource CircularStdBlack}" TextColor="{StaticResource main_text_color}" Text="Santa Talk" FontSize="56"/>
+                        <Label FontFamily="{StaticResource CircularStdBook}" TextColor="{StaticResource main_text_color}" Margin="0,8" FontSize="16"
+                               LineHeight="1.2" Text="Write Santa a letter, and he'll instantly let you know if you've been naughty or nice! Or just admire the snow, because who doesn't like some snow during the holidays?" />
                     </StackLayout>
-                    <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
-                        <StackLayout Spacing="8">
-                            <Label Text="WHAT'S YOUR NAME?" FontSize="12"/>
-                            <Entry Text="{Binding KidsName}" />
+                    <controls:PancakeView Padding="20" CornerRadius="8" BackgroundColor="#FFF">
+                        <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
+                            <StackLayout Spacing="8">
+                                <Label TextColor="{StaticResource highlight_color}" FontFamily="{StaticResource CircularStdMedium}" Text="WHAT'S YOUR NAME?" FontSize="12"/>
+                                <Entry Text="{Binding KidsName}" />
+                            </StackLayout>
+                            <StackLayout Spacing="8">
+                                <Label TextColor="{StaticResource highlight_color}" FontFamily="{StaticResource CircularStdMedium}" Text="WRITE YOUR LETTER TO SANTA" FontSize="12"/>
+                                <Editor Margin="-4,0,0,0" Text="{Binding LetterText}" />
+                            </StackLayout>
                         </StackLayout>
-                        <StackLayout Spacing="8">
-                            <Label Text="WRITE YOUR LETTER TO SANTA" FontSize="12"/>
-                            <Editor Text="{Binding LetterText}" TextColor="White"/>
-                        </StackLayout>
-                    </StackLayout>
-                    <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Margin="16" Command="{Binding SendLetterCommand}" />
+                    </controls:PancakeView>
+                    <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Command="{Binding SendLetterCommand}"/>
                 </StackLayout>
-            </ScrollView>
-        </Grid>
-
-    </controls:PancakeView>
-
+            </Grid>
+        </controls:PancakeView>
+    </ScrollView>
 </ContentPage>

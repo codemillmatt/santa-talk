@@ -52,7 +52,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991220-pre3" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms">
       <Version>2.4.11.982</Version>
@@ -64,7 +64,7 @@
       <Version>1.1.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.PancakeView">
-      <Version>1.3.6</Version>
+      <Version>1.3.4</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
@@ -101,27 +101,31 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\star.png">
+    <AndroidResource Include="Resources\drawable-xxxhdpi\snow.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xxhdpi\star.png">
+    <AndroidResource Include="Resources\drawable-xxhdpi\snow.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xhdpi\star.png">
+    <AndroidResource Include="Resources\drawable-xhdpi\snow.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-mdpi\star.png">
+    <AndroidResource Include="Resources\drawable-hdpi\snow.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-ldpi\star.png">
+    <AndroidResource Include="Resources\drawable-mdpi\snow.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-hdpi\star.png">
+    <AndroidResource Include="Resources\drawable-ldpi\snow.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\snowfall.gif">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
@@ -135,6 +139,7 @@
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
+    <Folder Include="Assets\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SantaTalk\SantaTalk.csproj">
@@ -143,10 +148,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\futura_book.ttf" />
-    <AndroidAsset Include="Assets\futura_extrablack.ttf" />
-    <AndroidAsset Include="Assets\futura_heavy.ttf" />
-    <AndroidAsset Include="Assets\futura_medium.ttf" />
+    <AndroidAsset Include="Assets\CircularStd-Black.otf" />
+    <AndroidAsset Include="Assets\CircularStd-Medium.otf" />
+    <AndroidAsset Include="Assets\CircularStd-Book.otf" />
+    <AndroidAsset Include="Assets\Flashback.otf" />
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

@@ -2,97 +2,87 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:controls="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"             
     x:Class="SantaTalk.ResultsPage"
-    ios:Page.UseSafeArea="True"
-    BackgroundColor="{StaticResource dark_gradient}"
+    ios:Page.UseSafeArea="true"
+    mc:Ignorable="d"
+    BackgroundColor="#080C28"
     NavigationPage.HasNavigationBar="False">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Label" x:Key="SantaText">
-                <Setter Property="FontSize" Value="16"/>
-                <Setter Property="TextColor" Value="Black"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ContentPage.Content>
+        <ScrollView VerticalOptions="FillAndExpand">
+            <controls:PancakeView BackgroundGradientStartColor="#080C28" BackgroundGradientEndColor="#0e2746">
+                <Grid RowSpacing="16">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image x:Name="Snow" Grid.RowSpan="2" IsAnimationPlaying="True" Source="snowfall.gif" Aspect="AspectFill" Opacity="0.2" />
 
-        <controls:PancakeView BackgroundGradientStartColor="{StaticResource dark_gradient}" 
-                          BackgroundGradientEndColor="{StaticResource light_gradient}">
+                    <ScrollView Grid.Row="0">
+                        <Grid Padding="36,40" state:StateLayout.CurrentState="{Binding CurrentState}">
 
-            <Grid x:Name="MainGrid" state:StateLayout.CurrentState="{Binding CurrentState}">
-                                
-                <state:StateLayout.StateViews>
-                    <state:StateView StateKey="Loading">
-                        <StackLayout Margin="24" Spacing="0">
-                            <Label Text="HERE IS SANTA'S LETTER BACK TO YOU" FontSize="16" TextColor="{StaticResource highlight_text}"/>
-                            <Label Text="{Binding KidsName, StringFormat='Dear {0},'}" FontSize="48"/>
-                            <controls:PancakeView Margin="0,24,0,0" BackgroundColor="{StaticResource white}" CornerRadius="8">
-                                <StackLayout Padding="24" Spacing="8">
-                                    <state:SkeletonView CornerRadius="6" HeightRequest="20" WidthRequest="120" BackgroundColor="#cccccc" />
-                                    <state:SkeletonView CornerRadius="6" HeightRequest="20" WidthRequest="120" BackgroundColor="#cccccc" />
-                                    <state:SkeletonView CornerRadius="6" HeightRequest="20" WidthRequest="20" BackgroundColor="#cccccc" />
-                                </StackLayout>
-                            </controls:PancakeView>
-                        </StackLayout>
-                    </state:StateView>
-                    <state:StateView StateKey="Error">
-                        <StackLayout Margin="24" Spacing="0">
-                            <Label Text="HERE IS SANTA'S LETTER BACK TO YOU" FontSize="16" TextColor="{StaticResource highlight_text}"/>
-                            <Label Text="{Binding KidsName, StringFormat='Dear {0},'}" FontSize="48"/>
-                            <controls:PancakeView Margin="0,24,0,0" BackgroundColor="{StaticResource white}" CornerRadius="8">
-                                <StackLayout Padding="24" Spacing="8">
-                                    <Label Text="I think it's very nice that you took the time to write me." Style="{StaticResource SantaText}" />
-                                    <Label Text="But try as I might, I cannot tell if you've been good or bad." Style="{StaticResource SantaText}"/>
-                                    <Label Text="There was really an error though - Santa thinks something's up with your Function." Style="{StaticResource SantaText}"/>
-                                </StackLayout>
-                            </controls:PancakeView>
-                        </StackLayout>
-                    </state:StateView>
-                    <state:StateView StateKey="Success">
-                        <StackLayout Margin="24" Spacing="0">
-                            <Label Text="HERE IS SANTA'S LETTER BACK TO YOU" FontSize="16" TextColor="{StaticResource highlight_text}"/>
-                            <Label Text="{Binding KidsName, StringFormat='Dear {0},'}" FontSize="48"/>
-
-                            <controls:PancakeView Margin="0,24,0,0" BackgroundColor="{StaticResource white}" CornerRadius="8">
-                                <StackLayout Padding="24" Spacing="8">
-                                    <Label Text="I think it's very nice that you took the time to write me." Style="{StaticResource SantaText}" />
-                                    <Label Style="{StaticResource SantaText}">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="I even think you writing in "/>
-                                                <Span Text="{Binding DetectedLanguage}" FontAttributes="Bold"/>
-                                                <Span Text=" was a nice touch."/>
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <Label Text="{Binding SantasComment}" Style="{StaticResource SantaText}" />
-                                    <Label Text="{Binding GiftDecision}" Style="{StaticResource SantaText}" />
-                                    <Label Text="Love," Margin="0,15,0,0" FontSize="12" Style="{StaticResource SantaText}" />
-                                    <Label Text="Santa Claus" Style="{StaticResource SantaText}" />
-                                </StackLayout>
-                            </controls:PancakeView>
-                        </StackLayout>
-                    </state:StateView>
-                    <state:StateView StateKey="Empty">
-                        <StackLayout Margin="24">
-                            <Label TextColor="White" Text="oh no!"/>
-                        </StackLayout>
-                    </state:StateView>
-                    <state:StateView StateKey="None">
-                        <StackLayout Margin="24">
-                            <Label Text="None" TextColor="White"/>
-                        </StackLayout>
-                    </state:StateView>
-                </state:StateLayout.StateViews>
-
-            </Grid>
-            
-        </controls:PancakeView>
-
+                            <state:StateLayout.StateViews>
+                                <state:StateView StateKey="Loading">
+                                    <StackLayout Spacing="0">
+                                        <Label Text="HERE IS SANTA'S LETTER BACK TO YOU" FontFamily="{StaticResource CircularStdMedium}" TextColor="{StaticResource highlight_color}" FontSize="14" />
+                                        <Label d:Text="Dear Steven," Text="{Binding KidsName, StringFormat='Dear {0},'}" FontFamily="{StaticResource CircularStdBlack}" TextColor="{StaticResource main_text_color}" FontSize="56"/>
+                                        <controls:PancakeView Padding="20,40" Margin="0,40,0,0" CornerRadius="8" BackgroundColor="#FFF">
+                                            <StackLayout Spacing="16">
+                                                <state:SkeletonView CornerRadius="6" HeightRequest="20" WidthRequest="120" BackgroundColor="#cccccc" />
+                                                <state:SkeletonView CornerRadius="6" HeightRequest="20" WidthRequest="120" BackgroundColor="#cccccc" />
+                                                <state:SkeletonView CornerRadius="6" HeightRequest="20" WidthRequest="20" BackgroundColor="#cccccc" />
+                                            </StackLayout>
+                                        </controls:PancakeView>
+                                    </StackLayout>
+                                </state:StateView>
+                                <state:StateView StateKey="Error">
+                                    <StackLayout Spacing="0">
+                                        <Label Text="HERE IS SANTA'S LETTER BACK TO YOU" FontFamily="{StaticResource CircularStdMedium}" TextColor="{StaticResource highlight_color}" FontSize="14" />
+                                        <Label Text="{Binding KidsName, StringFormat='Dear {0},'}" FontFamily="{StaticResource CircularStdBlack}" TextColor="{StaticResource main_text_color}" FontSize="56"/>
+                                        <controls:PancakeView Padding="20,40" Margin="0,40,0,0" CornerRadius="8" BackgroundColor="#FFF">
+                                            <StackLayout Spacing="24">
+                                                <Label TextColor="{StaticResource dark_text_color}" Text="I think it's very nice that you took the time to write me."  />
+                                                <Label TextColor="{StaticResource dark_text_color}" Text="But try as I might, I cannot tell if you've been good or bad." />
+                                                <Label TextColor="{StaticResource dark_text_color}" Text="There was really an error though - Santa thinks something's up with your Function." />
+                                            </StackLayout>
+                                        </controls:PancakeView>
+                                    </StackLayout>
+                                </state:StateView>
+                                <state:StateView StateKey="Success">
+                                    <StackLayout Spacing="0">
+                                        <Label Text="HERE IS SANTA'S LETTER BACK TO YOU" FontFamily="{StaticResource CircularStdMedium}" TextColor="{StaticResource highlight_color}" FontSize="14" />
+                                        <Label Text="{Binding KidsName, StringFormat='Dear {0},'}" FontFamily="{StaticResource CircularStdBlack}" TextColor="{StaticResource main_text_color}" FontSize="56"/>
+                                        <controls:PancakeView Padding="20,40" Margin="0,40,0,0" CornerRadius="8" BackgroundColor="#FFF">
+                                            <StackLayout Spacing="24">
+                                                <Label TextColor="{StaticResource dark_text_color}" Text="I think it's very nice that you took the time to write me." />
+                                                <Label TextColor="{StaticResource dark_text_color}">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="I even think you writing in "/>
+                                                            <Span Text="{Binding DetectedLanguage}" FontAttributes="Bold"/>
+                                                            <Span Text=" was a nice touch."/>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Label TextColor="{StaticResource dark_text_color}" Text="{Binding SantasComment}" />
+                                                <Label TextColor="{StaticResource dark_text_color}" Text="{Binding GiftDecision}" />
+                                                <Label TextColor="{StaticResource dark_text_color}" Text="Love," Margin="0,15,0,0" />
+                                                <Label TextColor="{StaticResource dark_text_color}" FontSize="40" FontFamily="{StaticResource Flashback}" Text="Santa Claus" />
+                                            </StackLayout>
+                                        </controls:PancakeView>
+                                    </StackLayout>
+                                </state:StateView>
+                            </state:StateLayout.StateViews>
+                        </Grid>
+                    </ScrollView>
+                    <Button Margin="36,0" VerticalOptions="EndAndExpand" Text="TRY AGAIN" Command="{Binding TryAgainCommand}"/>
+                </Grid>
+            </controls:PancakeView>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

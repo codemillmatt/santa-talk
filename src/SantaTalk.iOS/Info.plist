@@ -45,6 +45,18 @@
 		<string>futura_heavy.ttf</string>
 		<string>futura_medium.ttf</string>
 		<string>futura_extrablack.ttf</string>
+		<string>MerryChristmasStar.ttf</string>
+		<string>CHRICI.TTF</string>
+		<string>Bitter-Regular.ttf</string>
+		<string>Mansalva-Regular.ttf</string>
+		<string>CircularStd-Black.otf</string>
+		<string>CircularStd-Medium.otf</string>
+		<string>CircularStd-Book.otf</string>
+		<string>Flashback.otf</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
