@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Services\ISQLiteDbInterface_iOS.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -122,6 +123,9 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="SQLite.Net-PCL">
+      <Version>3.1.1</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms">
@@ -155,5 +159,23 @@
     <BundleResource Include="Resources\star.png" />
     <BundleResource Include="Resources\star%402x.png" />
     <BundleResource Include="Resources\star%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\elevs%402x.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\elevs%403x.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\elevs.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\SantaElves%403x.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\SantaElves%402x.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\SantaElves.jpg" />
   </ItemGroup>
 </Project>
