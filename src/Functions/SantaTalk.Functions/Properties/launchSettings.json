@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "SantaTalk.Functions": {
+      "commandName": "Project"
+    },
+    "FunctionsCLI": {
+      "commandName": "Executable",
+      "executablePath": "dotnet.exe",
+      "commandLineArgs": "%userprofile%\\AppData\\Roaming\\npm\\node_modules\\azure-functions-core-tools\\bin\\func.dll host start"
+    }
+  }
+}

@@ -1,18 +1,48 @@
 ﻿using System;
+using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Acr.UserDialogs;
 using MvvmHelpers;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
+using SantaTalk.Helpers;
+using SantaTalk.Views;
 using Xamarin.Forms;
 
 namespace SantaTalk
 {
     public class MainPageViewModel : BaseViewModel
     {
+        private Stream PictureToSanta;
+
+        public ICommand SendLetterCommand { get; }
+
+        public ICommand SendPictureCommand { get; }
+
+        public ICommand TakePictureCommand { get; }
+        public ICommand MapComand { get; }
+
         public MainPageViewModel()
         {
             SendLetterCommand = new Command(async () =>
             {
-                await Application.Current.MainPage.Navigation.PushAsync(new ResultsPage(KidsName, LetterText));
+                if (PictureToSanta==null)
+                {
+                    await UserDialogs.Instance.AlertAsync("Oh oh.. You have not attached the image for Santa ..");
+                    return;
+                }
+                await Application.Current.MainPage.Navigation.PushAsync(new ResultsPage(KidsName, LetterText, PictureToSanta));
             });
+
+            TakePictureCommand = new Command(async () => await SendImage(), () => !IsBusy);
+
+            MapComand = new Command(async () => await MapPage(), () => !IsBusy);
+        }
+
+        private async Task MapPage()
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new MapPage());
         }
 
         string kidsName;
@@ -22,13 +52,92 @@ namespace SantaTalk
             set => SetProperty(ref kidsName, value);
         }
 
-        string letterText = "Dear Santa...";
+        string letterText = "Querido Niño Jesús...";
         public string LetterText
         {
             get => letterText;
             set => SetProperty(ref letterText, value);
         }
 
-        public ICommand SendLetterCommand { get; }
+        private ImageSource _picture;
+        public ImageSource Picture
+        {
+            get => _picture;
+            set => SetProperty(ref _picture, value);
+        }
+
+        private async Task SendImage()
+        {
+            await CrossMedia.Current.Initialize();
+
+            MediaFile file;
+
+            try
+            {
+                if (CrossMedia.Current.IsCameraAvailable &&
+                CrossMedia.Current.IsTakePhotoSupported)
+                {
+                    string source = await UserDialogs.Instance.ActionSheetAsync(
+                        "Donde va a tomar la imagen?", "Cancelar", null, null, "Desde Galeria", "Desde Camara");
+
+                    if (source == "Cancelar")
+                    {
+                        file = null;
+                        return;
+                    }
+
+                    if (source == "Desde Camara")
+                    {
+                        file = await CrossMedia.Current.TakePhotoAsync(
+                            new StoreCameraMediaOptions
+                            {
+                                Directory = "Sample",
+                                Name = $"SantaTalk-{DateTime.Now.ToString("ddMMyyyyTHHmmss")}.jpg",
+                                AllowCropping = true,
+                                CompressionQuality = 100,
+                            }
+                        );
+                    }
+                    else
+                    {
+                        file = await CrossMedia.Current.PickPhotoAsync(
+                        new PickMediaOptions
+                        {
+                            PhotoSize = PhotoSize.MaxWidthHeight,
+                            MaxWidthHeight = 250,
+                            CompressionQuality = 85
+                        }
+                        );
+                    }
+                }
+                else
+                {
+                    file = await CrossMedia.Current.PickPhotoAsync(
+                    new PickMediaOptions
+                    {
+                        PhotoSize = PhotoSize.MaxWidthHeight,
+                        MaxWidthHeight = 250,
+                        CompressionQuality = 85
+                    }
+                    );
+                }
+
+                if (file == null)
+                {
+                    return;
+                }
+
+                PictureToSanta = file.GetStream();
+                Picture = ImageSource.FromStream(() => new MemoryStream(FilesHelper.ReadFully(file.GetStream())));
+
+                file.Dispose();
+
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync("Ocurrión un error al cargar la imagen: " + ex.Message, "Error");
+            }
+
+        }
     }
 }

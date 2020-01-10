@@ -1,64 +1,61 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="SantaTalk.App">
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="SantaTalk.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
     <Application.Resources>
         <ResourceDictionary>
-            <!-- The actual fonts -->
-            <OnPlatform x:Key="font_book" x:TypeArguments="x:String">
-                <On Platform="Android" Value="futura_book.ttf#FuturaBT-Book" />
-                <On Platform="iOS" Value="FuturaBT-Book" />
+            <OnPlatform x:Key="Flashback" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="flashback" />
+                <On Platform="Android" Value="Flashback.otf#Regular" />
+                <On Platform="UWP" Value="Assets/Flashback.otf#Regular" />
             </OnPlatform>
-            <OnPlatform x:Key="font_medium" x:TypeArguments="x:String">
-                <On Platform="Android" Value="futura_medium.ttf#FuturaBT-Medium" />
-                <On Platform="iOS" Value="FuturaBT-Medium" />
+            <OnPlatform x:Key="CircularStdBook" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="CircularStd-Book" />
+                <On Platform="Android" Value="CircularStd-Book.otf#Regular" />
+                <On Platform="UWP" Value="Assets/CircularStd-Book.otf#Regular" />
             </OnPlatform>
-            <OnPlatform x:Key="font_heavy" x:TypeArguments="x:String">
-                <On Platform="Android" Value="futura_heavy.ttf#FuturaBT-Heavy" />
-                <On Platform="iOS" Value="FuturaBT-Heavy" />
+            <OnPlatform x:Key="CircularStdMedium" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="CircularStd-Medium" />
+                <On Platform="Android" Value="CircularStd-Medium.otf#Regular" />
+                <On Platform="UWP" Value="Assets/CircularStd-Medium.otf#Regular" />
             </OnPlatform>
-            <OnPlatform x:Key="font_extrablack" x:TypeArguments="x:String">
-                <On Platform="Android" Value="futura_extrablack.ttf#FuturaBT-ExtraBlack" />
-                <On Platform="iOS" Value="FuturaBT-ExtraBlack" />
+            <OnPlatform x:Key="CircularStdBlack" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="CircularStd-Black" />
+                <On Platform="Android" Value="CircularStd-Black.otf#Regular" />
+                <On Platform="UWP" Value="Assets/CircularStd-Black.otf#Regular" />
             </OnPlatform>
-            
-            <!-- Primary colors -->            
-            <Color x:Key="dark_gradient">#0D0340</Color>
-            <Color x:Key="light_gradient">#000429</Color>
-            <Color x:Key="highlight_text">#FF4561</Color>
-            <Color x:Key="entry_background">#190336</Color>
-            <Color x:Key="normal_text">#ffffff</Color>
-            <Color x:Key="white">#ffffff</Color>
 
-            <!-- Controls -->
-            <Style TargetType="{x:Type StackLayout}">
+            <Color x:Key="main_text_color">#FFFFFF</Color>
+            <Color x:Key="dark_text_color">#080C28</Color>
+            <Color x:Key="highlight_color">#FF344D</Color>
+
+            <Style TargetType="StackLayout">
                 <Setter Property="Spacing" Value="0" />
             </Style>
-            <Style TargetType="{x:Type Grid}">
-                <Setter Property="RowSpacing" Value="0" />
-                <Setter Property="ColumnSpacing" Value="0" />
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource CircularStdBook}" />
+                <Setter Property="TextColor" Value="{StaticResource main_text_color}" />
             </Style>
-            <Style TargetType="{x:Type Label}">
-                <Setter Property="FontFamily" Value="{StaticResource font_book}" />
-                <Setter Property="FontSize" Value="16" />
-                <Setter Property="TextColor" Value="{StaticResource white}" />
-            </Style>
-            <Style TargetType="{x:Type Entry}">
-                <Setter Property="BackgroundColor" Value="{StaticResource entry_background}" />
-                <Setter Property="FontFamily" Value="{StaticResource font_book}" />
-                <Setter Property="HeightRequest" Value="40" />
-                <Setter Property="FontSize" Value="16" />
-                <Setter Property="TextColor" Value="{StaticResource white}" />
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                <Setter Property="FontFamily" Value="{StaticResource CircularStdBook}" />
+                <Setter Property="TextColor" Value="{StaticResource dark_text_color}" />
             </Style>
             <Style TargetType="Editor">
-                <Setter Property="BackgroundColor" Value="{StaticResource entry_background}"/>
+                <Setter Property="BackgroundColor" Value="#FFFFFF" />
                 <Setter Property="HeightRequest" Value="200" />
-                <Setter Property="TextColor" Value="{StaticResource white}" />
-                <Setter Property="FontSize" Value="16" />
+                <Setter Property="FontFamily" Value="{StaticResource CircularStdBook}" />
+                <Setter Property="TextColor" Value="{StaticResource dark_text_color}" />
             </Style>
-            <Style TargetType="{x:Type Button}">
-                <Setter Property="FontSize" Value="16" />
-                <Setter Property="BackgroundColor" Value="{StaticResource white}" />
-                <Setter Property="TextColor" Value="{StaticResource dark_gradient}" />
-                <Setter Property="FontFamily" Value="{StaticResource font_heavy}" />
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource main_text_color}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource highlight_color}" />
+                <Setter Property="FontFamily" Value="{StaticResource CircularStdBlack}" />
+                <Setter Property="FontSize" Value="14" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>
