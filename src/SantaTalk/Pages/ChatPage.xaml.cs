@@ -7,9 +7,9 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.StateSquid;
 
-namespace SantaTalk
+namespace SantaTalk.Pages
 {
-    public partial class ResultsPage : ContentPage
+    public partial class ChatPage : ContentPage
     {
         private readonly int _formsWidth;
         private readonly int _formsHeight;
@@ -17,17 +17,10 @@ namespace SantaTalk
         private bool _initialized = false;
         private bool _starsAdded = false;
         private List<VisualElement> _stars = new List<VisualElement>();
-        private ResultsPageViewModel vm = new ResultsPageViewModel();
 
-        public ResultsPage(string kidsName, string letterText)
+        public ChatPage()
         {
             InitializeComponent();
-
-            BindingContext = vm;
-
-            vm.KidsName = kidsName;
-            vm.LetterText = letterText;
-            vm.CurrentState = State.Loading;
 
             _formsWidth = Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density);
             _formsHeight = Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density);
@@ -36,8 +29,6 @@ namespace SantaTalk
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
-            await vm.SendLetterToSanta();
 
             if (!_initialized)
             {

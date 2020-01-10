@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using FFImageLoading.Forms;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.StateSquid;
 
-namespace SantaTalk
+namespace SantaTalk.Pages
 {
-    // Learn more about making custom code visible in the Xamarin.Forms previewer
-    // by visiting https://aka.ms/xamarinforms-previewer
-    [DesignTimeVisible(false)]
-    public partial class MainPage : ContentPage
+    public partial class ResultsPage : ContentPage
     {
         private readonly int _formsWidth;
         private readonly int _formsHeight;
@@ -22,10 +17,17 @@ namespace SantaTalk
         private bool _initialized = false;
         private bool _starsAdded = false;
         private List<VisualElement> _stars = new List<VisualElement>();
+        private ResultsPageViewModel vm = new ResultsPageViewModel();
 
-        public MainPage()
+        public ResultsPage(string kidsName, string letterText)
         {
             InitializeComponent();
+
+            BindingContext = vm;
+
+            vm.KidsName = kidsName;
+            vm.LetterText = letterText;
+            vm.CurrentState = State.Loading;
 
             _formsWidth = Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density);
             _formsHeight = Convert.ToInt32(DeviceDisplay.MainDisplayInfo.Height / DeviceDisplay.MainDisplayInfo.Density);
@@ -34,6 +36,8 @@ namespace SantaTalk
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+
+            await vm.SendLetterToSanta();
 
             if (!_initialized)
             {
@@ -87,6 +91,7 @@ namespace SantaTalk
         {
             while (!cancellation.IsCancellationRequested)
             {
+
                 await element.RotateTo(360, duration, Easing.Linear);
                 await element.RotateTo(0, 0); // reset to initial position
             }

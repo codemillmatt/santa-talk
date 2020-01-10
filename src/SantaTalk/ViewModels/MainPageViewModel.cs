@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using MvvmHelpers;
+using SantaTalk.Pages;
 using Xamarin.Forms;
 
 namespace SantaTalk
@@ -12,6 +13,10 @@ namespace SantaTalk
             SendLetterCommand = new Command(async () =>
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new ResultsPage(KidsName, LetterText));
+            });
+            ConnectToChatCommand = new Command(async () =>
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new ChatPage());
             });
         }
 
@@ -30,5 +35,6 @@ namespace SantaTalk
         }
 
         public ICommand SendLetterCommand { get; }
+        public ICommand ConnectToChatCommand { get; }
     }
 }
