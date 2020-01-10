@@ -1,13 +1,36 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using MvvmHelpers;
 using SantaTalk.Models;
+using SantaTalk.Services;
 using Xamarin.Forms.StateSquid;
 
 namespace SantaTalk
 {
     public class ResultsPageViewModel : BaseViewModel
     {
+        string filePath;
+        public string FilePath
+        {
+            get => filePath;
+            set => SetProperty(ref filePath, value);
+        }
+
+        bool theresFoto;
+        public bool TheresFoto
+        {
+            get => theresFoto;
+            set => SetProperty(ref theresFoto, value);
+        }
+
+        string emotionPhoto;
+        public string EmotionPhoto
+        {
+            get => emotionPhoto;
+            set => SetProperty(ref emotionPhoto, value);
+        }
+
         string kidsName;
         public string KidsName
         {
@@ -50,9 +73,19 @@ namespace SantaTalk
             set => SetProperty(ref giftDecision, value);
         }
 
+
         public async Task SendLetterToSanta()
         {
             CurrentState = State.Loading;
+
+            if (!string.IsNullOrEmpty(FilePath))
+            {
+                TheresFoto = true;
+                var emotion = await new PhotoDeliveryService().MakeAnalysisRequest(FilePath);
+                var currentEmotion = emotion.FirstOrDefault().FaceAttributes.CurrentEmotion();
+                EmotionPhoto = currentEmotion;
+                CurrentState = State.Success;
+            }
 
             var letter = new SantaLetter
             {
@@ -65,8 +98,11 @@ namespace SantaTalk
 
             if (results.SentimentScore == -1)
             {
-                CurrentState = State.Error;
-                return;
+                if (string.IsNullOrEmpty(FilePath))
+                {
+                    CurrentState = State.Error;
+                    return;
+                }
             }
 
             var commentsService = new SantasCommentsService();
