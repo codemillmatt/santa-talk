@@ -155,5 +155,6 @@
     <BundleResource Include="Resources\star.png" />
     <BundleResource Include="Resources\star%402x.png" />
     <BundleResource Include="Resources\star%403x.png" />
+    <BundleResource Include="Resources\santa_claus.png" />
   </ItemGroup>
 </Project>
