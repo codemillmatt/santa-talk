@@ -1,6 +1,6 @@
 # Santa Talk Challenge
 
-Extend the intelligent, serverless Santa Talk Xamarin application and get some cool swag! See [this article](https://devblogs.microsoft.com/xamarin/santa-talk-challenge-build-an-intelligent-serverless-xamarin-app?WT.mc_id=santatalkchallenge-github-masoucou) for more details!
+Extend the intelligent, serverless Santa Talk Xamarin application and get some cool swag! See [this article](https://devblogs.microsoft.com/xamarin/santa-talk-xamarin-challenge/) for more details!
 
 ## The Challenge
 
