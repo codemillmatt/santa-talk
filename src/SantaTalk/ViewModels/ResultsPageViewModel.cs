@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MvvmHelpers;
+using Realms;
 using SantaTalk.Models;
 using Xamarin.Forms.StateSquid;
 
@@ -14,13 +15,16 @@ namespace SantaTalk
             get => kidsName;
             set => SetProperty(ref kidsName, value);
         }
-
+        
         string letterText;
         public string LetterText
         {
             get => letterText;
             set => SetProperty(ref letterText, value);
         }
+
+        public string PictureBase64 { get; set; }
+        public string Picture { get; set; }
 
         State currentState = State.Loading;
         public State CurrentState
@@ -50,6 +54,8 @@ namespace SantaTalk
             set => SetProperty(ref giftDecision, value);
         }
 
+        public string Caption { get; set; }
+
         public async Task SendLetterToSanta()
         {
             CurrentState = State.Loading;
@@ -57,7 +63,8 @@ namespace SantaTalk
             var letter = new SantaLetter
             {
                 KidName = KidsName,
-                LetterText = LetterText
+                LetterText = LetterText,
+                PictureBase64 = PictureBase64
             };
 
             var letterService = new LetterDeliveryService();
@@ -75,6 +82,24 @@ namespace SantaTalk
             SantasComment = comments.SentimentInterpretation;
             GiftDecision = comments.GiftPrediction;
             DetectedLanguage = results.DetectedLanguage;
+            Caption = "I see " + results.Caption;
+
+            var realm = Realm.GetInstance();
+
+            // Save to DB
+            realm.Write(() =>
+            {
+                realm.Add(new SantaResultsData
+                {
+                    KidsName = KidsName,
+                    SantasComment = SantasComment,
+                    GiftDecision = GiftDecision,
+                    DetectedLanguage = DetectedLanguage,
+                    Caption = Caption,
+                    PicturePath = Picture,
+                    Timestamp = DateTime.Now
+                });
+            });
 
             CurrentState = State.Success;
         }

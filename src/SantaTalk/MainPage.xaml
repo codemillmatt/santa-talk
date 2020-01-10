@@ -24,12 +24,12 @@
         <Grid x:Name="MainGrid">
             <ScrollView VerticalOptions="FillAndExpand">
                 <StackLayout VerticalOptions="FillAndExpand" Padding="24" Spacing="0">
-                    <StackLayout VerticalOptions="CenterAndExpand">
+                    <StackLayout VerticalOptions="StartAndExpand">
                         <Label Text="WELCOME TO" FontSize="16" TextColor="{StaticResource highlight_text}"/>
                         <Label Text="Santa Talk" FontSize="48"/>
                         <Label Margin="0,24,0,16" FontSize="15" Text="Write Santa a letter, and he'll instantly let you know if you've been naughty or nice!" />
                     </StackLayout>
-                    <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
+                    <StackLayout Spacing="24" VerticalOptions="CenterAndExpand">
                         <StackLayout Spacing="8">
                             <Label Text="WHAT'S YOUR NAME?" FontSize="12"/>
                             <Entry Text="{Binding KidsName}" />
@@ -38,8 +38,13 @@
                             <Label Text="WRITE YOUR LETTER TO SANTA" FontSize="12"/>
                             <Editor Text="{Binding LetterText}" TextColor="White"/>
                         </StackLayout>
+                        <StackLayout Spacing="8" Margin="0,0,0,24">
+                            <Label Text="TAKE A SELFIE" FontSize="12"/>
+                            <Image IsVisible="{Binding IsPictureTaken}" Source="{Binding Picture}"/>
+                            <Button Text="TAKE A SELFIE" x:Name="TakePhoto" Command="{Binding TakePhoto}"/>
+                        </StackLayout>
                     </StackLayout>
-                    <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Margin="16" Command="{Binding SendLetterCommand}" />
+                    <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Command="{Binding SendLetterCommand}" />
                 </StackLayout>
             </ScrollView>
         </Grid>

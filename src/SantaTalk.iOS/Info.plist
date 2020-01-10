@@ -25,7 +25,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>SantaTalk</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.codemilltech.SantaTalk</string>
+	<string>com.zurichtopaslife.try1</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>
@@ -38,6 +38,8 @@
 	<dict>
 		<key>NSAllowLocalNetworking</key>
 		<true/>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
@@ -46,5 +48,13 @@
 		<string>futura_medium.ttf</string>
 		<string>futura_extrablack.ttf</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs access to the camera to take photos.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app needs access to microphone.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app needs access to the photo gallery.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs access to Photos gallery to take image.</string>
 </dict>
 </plist>
