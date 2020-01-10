@@ -5,26 +5,26 @@ namespace SantaTalk
 {
     public class SantasCommentsService
     {
-        public SantaResultDisplay MakeGiftDecision(SantaResults results)
+        public SantaResultDisplay MakeGiftDecision(SantaResults results, FaceInfo resultface)
         {
             // Based on the results - have Santa make some comments on the kids behavior throughout the year
             // and then decide on whether to give them a gift or not.
 
             SantaResultDisplay comments = new SantaResultDisplay();
 
-            if (results.SentimentScore < .3)
+            if (results.SentimentScore < .3 || resultface.emotion.Equals("Anger", StringComparison.OrdinalIgnoreCase) || resultface.emotion.Equals("Contempt", StringComparison.OrdinalIgnoreCase))
             {
                 // very bad behavior
                 comments.SentimentInterpretation = "Seriously though, why did you act like that this year? Don't you know I'm always watching? Always. Watching.";
                 comments.GiftPrediction = "You'll get nothing and you'll like it.";
             }
-            else if (results.SentimentScore >= .3 && results.SentimentScore < .66)
+            else if ((results.SentimentScore >= .3 && results.SentimentScore < .66) || resultface.emotion.Equals("Sadness", StringComparison.OrdinalIgnoreCase))
             {
                 // bad saide of average
                 comments.SentimentInterpretation = "You were kind of a good kid this year. You should have probably been better. I get it though, probably your brother's fault.";
                 comments.GiftPrediction = "If you put out enough cookies, I might leave you something.";
             }
-            else if (results.SentimentScore >= .66 && results.SentimentScore < .95)
+            else if ((results.SentimentScore >= .66 && results.SentimentScore < .95) || resultface.emotion.Equals("Happinness", StringComparison.OrdinalIgnoreCase) || resultface.smile == 1)
             {
                 // good side of average
                 comments.SentimentInterpretation = "Nice work there kid. You were a good kid all year long. Santa for sure is stopping at your house!";
