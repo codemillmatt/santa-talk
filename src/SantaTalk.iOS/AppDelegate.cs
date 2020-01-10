@@ -23,6 +23,7 @@ namespace SantaTalk.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            Xamarin.FormsMaps.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
 
             LoadApplication(new App());
