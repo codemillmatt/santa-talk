@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FFImageLoading.Forms;
@@ -36,6 +37,12 @@ namespace SantaTalk
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+
+            // since the letter text is not available to the vm,
+            // provide a func to retrieve it
+            // dont @ me 
+            vm.GetCompleteLetterText = () =>
+                String.Join(Environment.NewLine, GetDescendantLabelsText(MainGrid).Skip(1));
 
             await vm.SendLetterToSanta();
 
@@ -96,5 +103,20 @@ namespace SantaTalk
                 await element.RotateTo(0, 0); // reset to initial position
             }
         }
+
+        private IEnumerable<string> GetDescendantLabelsText(Element content)
+            => content switch
+            {
+                Layout layout =>
+                    layout.Children.SelectMany(GetDescendantLabelsText),
+
+                Label formattedLabel when formattedLabel.FormattedText != null =>
+                    new [] { $"{formattedLabel.FormattedText}" },
+
+                Label label =>
+                    new[] { label.Text },
+
+                _ => new string[] { }
+            };
     }
 }

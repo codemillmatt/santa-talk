@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using MvvmHelpers;
 using SantaTalk.Models;
+using Xamarin.Essentials;
 using Xamarin.Forms.StateSquid;
 
 namespace SantaTalk
@@ -50,6 +51,8 @@ namespace SantaTalk
             set => SetProperty(ref giftDecision, value);
         }
 
+        public Func<string> GetCompleteLetterText { get; set; }
+
         public async Task SendLetterToSanta()
         {
             CurrentState = State.Loading;
@@ -66,6 +69,7 @@ namespace SantaTalk
             if (results.SentimentScore == -1)
             {
                 CurrentState = State.Error;
+                await ReadLetterAloud();
                 return;
             }
 
@@ -77,6 +81,20 @@ namespace SantaTalk
             DetectedLanguage = results.DetectedLanguage;
 
             CurrentState = State.Success;
+
+            await ReadLetterAloud();
+        }
+
+        public async Task ReadLetterAloud()
+        {
+            if (GetCompleteLetterText == null)
+                return;
+
+            await TextToSpeech.SpeakAsync(GetCompleteLetterText(),
+                new SpeechOptions
+                {
+                    Pitch = .35f,
+                });
         }
     }
 }
