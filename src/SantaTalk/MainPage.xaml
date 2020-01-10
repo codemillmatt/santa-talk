@@ -7,6 +7,7 @@
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:controls="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:viewmodels="clr-namespace:SantaTalk"
+    xmlns:local="clr-namespace:SantaTalk.Validators"
     mc:Ignorable="d"
     NavigationPage.HasNavigationBar="False"
     NavigationPage.BackButtonTitle=""
@@ -17,6 +18,12 @@
     <ContentPage.BindingContext>
         <viewmodels:MainPageViewModel />
     </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ValidToShowStateConverter x:Key="validToShow"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <controls:PancakeView BackgroundGradientStartColor="{StaticResource dark_gradient}" 
                           BackgroundGradientEndColor="{StaticResource light_gradient}">
@@ -31,15 +38,45 @@
                     </StackLayout>
                     <StackLayout Spacing="16" VerticalOptions="CenterAndExpand">
                         <StackLayout Spacing="8">
-                            <Label Text="WHAT'S YOUR NAME?" FontSize="12"/>
-                            <Entry Text="{Binding KidsName}" />
+                            <Label Text="WHAT'S YOUR NAME?" FontSize="14"/>
+                            <Entry Text="{Binding KidsName}">
+                                <Entry.Behaviors>
+                                    <local:EmptyStringValidatorBehavior x:Name="EmptyStringValidatorBehavior"/>
+                                </Entry.Behaviors>
+                            </Entry>
+                            <Label Text="Please write your name" 
+                                   IsVisible="{Binding Source={x:Reference EmptyStringValidatorBehavior}, Path=IsValid, Converter={StaticResource validToShow}}" 
+                                   FontSize="12" 
+                                   TextColor="{StaticResource highlight_text}"/>
                         </StackLayout>
                         <StackLayout Spacing="8">
-                            <Label Text="WRITE YOUR LETTER TO SANTA" FontSize="12"/>
-                            <Editor Text="{Binding LetterText}" TextColor="White"/>
+                            <Label Text="WRITE YOUR LETTER TO SANTA" FontSize="14"/>
+                            <Editor Text="{Binding LetterText}" TextColor="White">
+                                <Editor.Behaviors>
+                                    <local:LetterValidatorBehavior x:Name="LetterValidatorBehavior"/>
+                                </Editor.Behaviors>
+                            </Editor>
+                            <Label Text="Please complete the letter" 
+                                   IsVisible="{Binding Source={x:Reference LetterValidatorBehavior}, Path=IsValid, Converter={StaticResource validToShow}}" 
+                                   FontSize="12" 
+                                   TextColor="{StaticResource highlight_text}"/>
                         </StackLayout>
                     </StackLayout>
-                    <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Margin="16" Command="{Binding SendLetterCommand}" />
+                    <Button VerticalOptions="EndAndExpand" Text="SEND TO SANTA" Margin="16" Command="{Binding SendLetterCommand}">
+                        <Button.Triggers>
+                            <MultiTrigger TargetType="Button">
+                                <MultiTrigger.Conditions>
+                                    <BindingCondition 
+                                        Binding="{Binding Source={x:Reference EmptyStringValidatorBehavior}, Path=IsValid}"
+                                        Value="True" />
+                                    <BindingCondition 
+                                        Binding="{Binding Source={x:Reference LetterValidatorBehavior}, Path=IsValid}"
+                                        Value="True" />
+                                </MultiTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="True" />
+                            </MultiTrigger>
+                        </Button.Triggers>
+                    </Button>
                 </StackLayout>
             </ScrollView>
         </Grid>
