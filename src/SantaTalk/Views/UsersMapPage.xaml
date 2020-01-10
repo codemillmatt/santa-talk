@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModel="clr-namespace:SantaTalk.ViewModels"
+             mc:Ignorable="d"
+              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="SantaTalk.Views.UsersMapPage" Title="Live Users">
+    <ContentPage.BindingContext>
+        <viewModel:UsersMapPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <maps:Map IsShowingUser="True" x:Name="map" ItemsSource="{Binding Locations}" >
+                <maps:Map.ItemTemplate>
+                    <DataTemplate>
+                        <maps:Pin Position="{Binding position}"
+                              Address="{Binding Expression}"
+                              Label="{Binding Name}" />
+                    </DataTemplate>
+                </maps:Map.ItemTemplate>
+                
+            </maps:Map>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using Xamarin.Forms;
 
 namespace SantaTalk.iOS
 {
@@ -24,7 +25,9 @@ namespace SantaTalk.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
-
+            Rg.Plugins.Popup.Popup.Init();
+            Xamarin.FormsMaps.Init();
+            Forms.SetFlags("CarouselView_Experimental");
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

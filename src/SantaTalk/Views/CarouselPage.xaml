@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:viewmodel="clr-namespace:SantaTalk.ViewModels"
+             xmlns:controls="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="SantaTalk.Views.CarouselPage" Title="Carousel">
+    <ContentPage.BindingContext>
+        <viewmodel:CarouselPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <controls:PancakeView BackgroundGradientStartColor="{StaticResource dark_gradient}" 
+                          BackgroundGradientEndColor="{StaticResource light_gradient}">
+            <StackLayout>
+                <CarouselView ItemsSource="{Binding ObjModel}" PeekAreaInsets="50">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+
+                            <StackLayout>
+                                <Frame BorderColor="Gray" Margin="8" HasShadow="True" HeightRequest="350" CornerRadius="20" VerticalOptions="CenterAndExpand">
+                                    <StackLayout>
+                                        <Image Source="{Binding ImagePath}"/>
+                                        <Label Margin="5,10,0,0" Text="{Binding Name}" TextColor="Black" FontSize="15" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
+                                        <Label Margin="5,10,0,0" Text="{Binding Score}" TextColor="Black" FontSize="12" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
+
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+            </StackLayout>
+        </controls:PancakeView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:views="clr-namespace:SantaTalk.Views"
+             xmlns:homepage="clr-namespace:SantaTalk"
+             x:Class="SantaTalk.Views.AppShell"
+            Title="Welcome"
+            FlyoutBehavior="Flyout"
+       
+       FlyoutBackgroundColor="White">
+    <FlyoutItem   Title="Welcome" FlyoutDisplayOptions="AsMultipleItems">
+        
+        <Tab  Title="Home" Icon="home_icon.png">
+            <ShellContent Title="Home" Icon="home_icon.png">
+                <homepage:MainPage/>
+            </ShellContent>
+            
+        </Tab>
+        <Tab Title="Camera"  Icon="camera_icon.png">
+
+            <ShellContent Title="Camera" Icon="camera_icon.png">
+                <views:CameraPage  />
+            </ShellContent>
+        </Tab>
+        <Tab  Title="Carousel View"  Icon="viewcarousel.png">
+
+            <ShellContent Title="Carousel View" Icon="viewcarousel.png">
+                <views:CarouselPage  />
+            </ShellContent>
+        </Tab>
+        <Tab  Title="Live Users"  Icon="googlemaps.png">
+
+            <ShellContent Title="Map" Icon="googlemaps.png">
+                <views:UsersMapPage  />
+            </ShellContent>
+        </Tab>
+
+    </FlyoutItem>
+</Shell>

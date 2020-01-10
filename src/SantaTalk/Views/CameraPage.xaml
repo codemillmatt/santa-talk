@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SantaTalk.Views.CameraPage"
+             xmlns:viewmodel="clr-namespace:SantaTalk.ViewModels"
+             xmlns:controls="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             Title="Camera"
+             >
+    <ContentPage.BindingContext>
+        <viewmodel:CameraPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <controls:PancakeView BackgroundGradientStartColor="{StaticResource dark_gradient}" 
+                          BackgroundGradientEndColor="{StaticResource light_gradient}">
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+                <Button Text="Start Camera" Command="{Binding StartCameraCommand}"/>
+            </StackLayout>
+        </controls:PancakeView>
+    </ContentPage.Content>
+
+</ContentPage>
