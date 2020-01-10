@@ -6,12 +6,17 @@ using Xamarin.Forms;
 namespace SantaTalk
 {
     public class MainPageViewModel : BaseViewModel
-    {
+    {        
         public MainPageViewModel()
-        {
+        {            
             SendLetterCommand = new Command(async () =>
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new ResultsPage(KidsName, LetterText));
+            });
+
+            SeeHistoryCommand = new Command(async () =>
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new LetterHistoryPage());
             });
         }
 
@@ -30,5 +35,6 @@ namespace SantaTalk
         }
 
         public ICommand SendLetterCommand { get; }
+        public ICommand SeeHistoryCommand { get; }
     }
 }

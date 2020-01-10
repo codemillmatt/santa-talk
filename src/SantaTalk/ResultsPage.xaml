@@ -8,7 +8,7 @@
     x:Class="SantaTalk.ResultsPage"
     ios:Page.UseSafeArea="True"
     BackgroundColor="{StaticResource dark_gradient}"
-    NavigationPage.HasNavigationBar="False">
+    Title="Results">
 
     <ContentPage.Resources>
         <ResourceDictionary>
