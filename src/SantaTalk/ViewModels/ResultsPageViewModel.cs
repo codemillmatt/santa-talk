@@ -60,23 +60,31 @@ namespace SantaTalk
                 LetterText = LetterText
             };
 
-            var letterService = new LetterDeliveryService();
-            var results = await letterService.WriteLetterToSanta(letter);
-
-            if (results.SentimentScore == -1)
+            try
             {
-                CurrentState = State.Error;
-                return;
+                var letterService = new LetterDeliveryService();
+                var results = await letterService.WriteLetterToSanta(letter);
+
+                if (results.SentimentScore.Equals(-1))
+                {
+                    CurrentState = State.Error;
+                    return;
+                }
+
+                var commentsService = new SantasCommentsService();
+                var comments = commentsService.MakeGiftDecision(results);
+
+                SantasComment = comments.SentimentInterpretation;
+                GiftDecision = comments.GiftPrediction;
+                DetectedLanguage = results.DetectedLanguage;
+
+                CurrentState = State.Success;
             }
-
-            var commentsService = new SantasCommentsService();
-            var comments = commentsService.MakeGiftDecision(results);
-
-            SantasComment = comments.SentimentInterpretation;
-            GiftDecision = comments.GiftPrediction;
-            DetectedLanguage = results.DetectedLanguage;
-
-            CurrentState = State.Success;
+            catch(Exception ex)
+            {
+                currentState = State.Error;
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

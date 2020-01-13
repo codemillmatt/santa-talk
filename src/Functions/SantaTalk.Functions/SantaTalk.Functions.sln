@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SantaTalk.Functions", "SantaTalk.Functions.csproj", "{8B1596A8-6091-4F56-8CC1-181879196AF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SantaTalk.Models", "..\SantaTalk.Models\SantaTalk.Models.csproj", "{4F60AC05-3995-43B7-827F-A47DC2764D6A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B1596A8-6091-4F56-8CC1-181879196AF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B1596A8-6091-4F56-8CC1-181879196AF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B1596A8-6091-4F56-8CC1-181879196AF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B1596A8-6091-4F56-8CC1-181879196AF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F60AC05-3995-43B7-827F-A47DC2764D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F60AC05-3995-43B7-827F-A47DC2764D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F60AC05-3995-43B7-827F-A47DC2764D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F60AC05-3995-43B7-827F-A47DC2764D6A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

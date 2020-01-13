@@ -27,7 +27,7 @@
             <Color x:Key="entry_background">#190336</Color>
             <Color x:Key="normal_text">#ffffff</Color>
             <Color x:Key="white">#ffffff</Color>
-
+            <Color x:Key="shell_background">#301536</Color>
             <!-- Controls -->
             <Style TargetType="{x:Type StackLayout}">
                 <Setter Property="Spacing" Value="0" />

@@ -2,13 +2,16 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:controls="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"             
-    x:Class="SantaTalk.ResultsPage"
+    xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"
+    mc:Ignorable="d" 
+    x:Class="SantaTalk.Views.ResultsPage"
+    Title="Santa's Reply"
     ios:Page.UseSafeArea="True"
-    BackgroundColor="{StaticResource dark_gradient}"
-    NavigationPage.HasNavigationBar="False">
+    BackgroundColor="{StaticResource dark_gradient}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -25,7 +28,7 @@
                           BackgroundGradientEndColor="{StaticResource light_gradient}">
 
             <Grid x:Name="MainGrid" state:StateLayout.CurrentState="{Binding CurrentState}">
-                                
+                
                 <state:StateLayout.StateViews>
                     <state:StateView StateKey="Loading">
                         <StackLayout Margin="24" Spacing="0">
@@ -57,7 +60,6 @@
                         <StackLayout Margin="24" Spacing="0">
                             <Label Text="HERE IS SANTA'S LETTER BACK TO YOU" FontSize="16" TextColor="{StaticResource highlight_text}"/>
                             <Label Text="{Binding KidsName, StringFormat='Dear {0},'}" FontSize="48"/>
-
                             <controls:PancakeView Margin="0,24,0,0" BackgroundColor="{StaticResource white}" CornerRadius="8">
                                 <StackLayout Padding="24" Spacing="8">
                                     <Label Text="I think it's very nice that you took the time to write me." Style="{StaticResource SantaText}" />
@@ -91,7 +93,8 @@
                 </state:StateLayout.StateViews>
 
             </Grid>
-            
+
+
         </controls:PancakeView>
 
     </ContentPage.Content>

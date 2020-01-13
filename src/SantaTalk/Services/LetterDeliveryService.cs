@@ -9,11 +9,10 @@ namespace SantaTalk
 {
     public class LetterDeliveryService
     {
-        //string santaUrl = "{REPLACE WITH YOUR FUNCTION URL}/api/WriteSanta";
+        string santaUrl = "https://xamarinazureSantaTalk-kumar.azurewebsites.net/api/WriteSanta?code=xxxxxxxxxxx";
+        //string santaUrl = "http://localhost:7071/api/WriteSanta";
 
-        string santaUrl = "http://localhost:7071/api/WriteSanta";
-        static HttpClient httpClient = new HttpClient();
-
+        static readonly HttpClient httpClient = new HttpClient();
         public async Task<SantaResults> WriteLetterToSanta(SantaLetter letter)
         {
             // if we're on the Android emulator, running functions locally, need to swap out the function url
@@ -22,7 +21,7 @@ namespace SantaTalk
                 santaUrl = "http://10.0.2.2:7071/api/WriteSanta";
             }
 
-            SantaResults results = null;
+            SantaResults results;
             try
             {
                 var letterJson = JsonConvert.SerializeObject(letter);

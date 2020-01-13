@@ -1,0 +1,10 @@
+﻿{
+  "IsEncrypted": false,
+  "Values": {
+    "API_HOST": "https://configuredOnAzure.azurewebsites.net",
+    "END_POINT": "registers",
+    "APIKey": "6cf27ec5e0604d5b967fdb997f476443",
+    "APIEndpoint": "https://westcentralus.api.cognitive.microsoft.com/",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+  }  
+}
