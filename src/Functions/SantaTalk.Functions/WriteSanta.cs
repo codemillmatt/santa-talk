@@ -17,13 +17,11 @@ namespace SantaTalk.Functions
 {
     public static class WriteSanta
     {
-        static TextAnalyticsClient textClient;
-
+        static readonly TextAnalyticsClient textClient;
         static WriteSanta()
         {
-            var keys = new ApiKeyServiceClientCredentials(Environment.GetEnvironmentVariable("APIKey"));
-
-            textClient = new TextAnalyticsClient(keys) { Endpoint = Environment.GetEnvironmentVariable("APIEndpoint") };
+            var credentials = new ApiKeyServiceClientCredentials(Environment.GetEnvironmentVariable("APIKey"));
+            textClient = new TextAnalyticsClient(credentials) { Endpoint = Environment.GetEnvironmentVariable("APIEndpoint") };
         }
 
         [FunctionName("WriteSanta")]
