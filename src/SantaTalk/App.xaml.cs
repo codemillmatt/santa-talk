@@ -1,6 +1,5 @@
 ﻿using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace SantaTalk
 {
@@ -9,14 +8,7 @@ namespace SantaTalk
         public App()
         {
             InitializeComponent();
-
-            var navPage = new NavigationPage(new MainPage())
-            {
-                BarBackgroundColor = Color.FromHex("#301536"),
-                BarTextColor = Color.Wheat
-            };
-
-            MainPage = navPage;
+            MainPage = new AppShell();
         }
 
         protected override void OnStart()
