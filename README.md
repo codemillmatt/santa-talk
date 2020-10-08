@@ -1,6 +1,6 @@
 # Santa Talk Challenge
 
-Extend the intelligent, serverless Santa Talk Xamarin application and get some cool swag! See [this article](https://devblogs.microsoft.com/xamarin/santa-talk-xamarin-challenge/) for more details!
+Extend the intelligent, serverless Santa Talk Xamarin application and get some cool swag! See [this article](https://devblogs.microsoft.com/xamarin/santa-talk-xamarin-challenge/?WT.mc_id=santatalk-github-masoucou) for more details!
 
 ## The Challenge
 
@@ -31,7 +31,7 @@ To get you up and running as quickly as possible, here is a way to get Text Anal
 ### Creating the Text Analytics Service
 
 1. If you don't already have one, [sign up for a free Azure subscription here](https://azure.microsoft.com/free/?WT.mc_id=santatalkchallenge-github-masoucou).
-2. Once done, open up the Azure portal: https://portal.azure.com - and sign in.
+2. Once done, open up the Azure portal: https://portal.azure.com/?WT.mc_id=santatalk-github-masoucou - and sign in.
 3. Then open up the [`Azure Cloud Shell`](https://docs.microsoft.com/azure/cloud-shell/overview?WT.mc_id=santatalkchallenge-github-masoucou). You can do that by clicking on the button that looks like the command prompt.
 ![Azure portal cloud shell screen shot](https://res.cloudinary.com/code-mill-technologies-inc/image/upload/v1576715254/command-prompt_dxgndc.png)
 4. Once the `Cloud Shell` opens, you'll want to do two things. Create a `Resource Group` and then the `Text Analytics` service. So go ahead and think of names for both right now ... you'll need them for the next step.
@@ -79,7 +79,7 @@ At the same level as the *csproj file for the Functions project add a file named
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
     "APIKey": "YOUR KEY WILL GO HERE",
-    "APIEndpoint": "https://westus2.api.cognitive.microsoft.com/"
+    "APIEndpoint": "https://westus2.api.cognitive.microsoft.com/?WT.mc_id=santatalk-github-masoucou"
   }
 }
 ```
